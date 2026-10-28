@@ -13,6 +13,7 @@ Publishing an OIP does not approve its technical design or activate a change on 
 | --- | --- | --- | --- | --- |
 | [OIP-1](OIPs/oip-1.md) | OIP Purpose and Guidelines | Meta | — | Living |
 | [OIP-2](OIPs/oip-2.md) | Fee-Delegated Dynamic Fee Transactions | Standards Track | Core | Final |
+| [OIP-3](OIPs/oip-3.md) | Native Coin Transfer Logs | Standards Track | Core | Final |
 | [TBD](OIPs/oip-draft-fee-delegation-rpc.md) | Fee Delegation JSON-RPC Extensions | Standards Track | Interface | Draft |
 
 ## License
