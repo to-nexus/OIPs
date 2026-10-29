@@ -13,7 +13,7 @@ created: 2026-10-28
 
 ## Abstract
 
-This proposal specifies the base fee and block gas limit rules used by ONEchain's ECDSA Istanbul execution profile.
+This proposal specifies the base fee and block gas limit rules used by ONEchain Istanbul chains.
 It adopts the dynamic-fee pricing model of [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) and the `BASEFEE` instruction of [EIP-3198](https://eips.ethereum.org/EIPS/eip-3198), with configurable elasticity, adjustment denominator, fee bounds, and deterministic gas limit transitions.
 It defines calculation rules; fee crediting is specified by [OIP-11](oip-11.md).
 
@@ -27,7 +27,7 @@ The height used to select each parameter and the exact branches applying fee bou
 
 ### Scope and Parameters
 
-The rules apply to the ECDSA Istanbul profile with London execution enabled.
+The rules apply to Istanbul chains with London execution enabled.
 They do not introduce an activation schedule or define validator economics.
 Let `H` be a child header at height `n`, and `P` its parent at height `n - 1`.
 All arithmetic below uses nonnegative integers and floor division.
@@ -83,7 +83,7 @@ Estimation and fee history must use the same calculation rather than Ethereum's 
 
 The expected gas limit is the configured `gaslimit` resolved at the **child** height `n`.
 If no value is configured, the expected limit is `P.gasLimit`.
-The child must use that value exactly; the Ethereum rule permitting a producer to adjust the parent limit within a small range is not used for this profile.
+The child must use that value exactly; the Ethereum rule permitting a producer to adjust the parent limit within a small range is not used on Istanbul chains.
 There is no automatic elasticity multiplication of the block limit at the London boundary in this Istanbul path.
 
 The header must also satisfy `gasLimit <= 2^63 - 1` and `gasUsed <= gasLimit`.
@@ -137,7 +137,7 @@ Reference implementation: [go-cross revision 4c0838f](https://github.com/to-nexu
 - [Header verification and fee calculation](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/misc/eip1559/eip1559.go).
 - [Parameter lookup and transitions](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/params/config_istanbul.go).
 
-See the [base fee verification notes](../assets/oip-6/verification.md#base-fee-and-gas-limits) for inspection and test limits.
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-9/verification.md).
 
 ## Implementation and Activation
 

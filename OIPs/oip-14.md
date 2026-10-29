@@ -1,7 +1,7 @@
 ---
 oip: 14
 title: ONEchain RPC Compatibility Profile
-description: Ethereum block tags and fee history, and the ECDSA Istanbul management and inspection interface.
+description: Ethereum block tags and fee history, and the Istanbul management and inspection interface.
 author: ONEchain Contributors
 status: Final
 type: Standards Track
@@ -15,7 +15,7 @@ requires: 2, 3
 ## Abstract
 
 This proposal specifies ONEchain's JSON-RPC compatibility profile.
-It describes block-tag resolution, fee-history calculations, and the inspection and voting methods of the ECDSA Istanbul namespace.
+It describes block-tag resolution, fee-history calculations, and the inspection and voting methods of the Istanbul namespace.
 It distinguishes Ethereum-compatible encodings from the existing Istanbul response formats and documents method-specific errors and limits.
 
 ## Motivation
@@ -28,7 +28,7 @@ Documenting these differences prevents incorrect finality, fee, and validator-st
 
 ### Scope and Encoding
 
-This profile applies to the ECDSA Istanbul chain and the reference implementation identified below.
+This profile applies to Istanbul chains and the reference implementation identified below.
 Method availability depends on the node's configured transports and enabled RPC namespaces.
 Registration of a method does not require every public provider to expose it.
 
@@ -202,7 +202,7 @@ Reference implementation: [go-cross revision 4c0838f](https://github.com/to-nexu
 - [Fee history](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/eth/gasprice/feehistory.go).
 - [Istanbul API](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/backend/api.go).
 
-See the [RPC compatibility verification notes](../assets/oip-6/verification.md#rpc-compatibility) for source coverage and limits.
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-14/verification.md).
 
 ## Implementation and Activation
 

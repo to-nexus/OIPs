@@ -157,6 +157,8 @@ Reference implementation: [go-cross at revision 4c0838f](https://github.com/to-n
 - [Consensus engine construction](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/eth/ethconfig/config.go).
 - [Block context and `PREVRANDAO` value](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/evm.go).
 
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-4/verification.md).
+
 ## Implementation and Activation
 
 The reference client wraps the Istanbul engine in the upstream merge-aware engine.

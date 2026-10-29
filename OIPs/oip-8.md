@@ -26,7 +26,7 @@ The opcode name alone does not identify the entropy source, predictability, or p
 
 ### Scope and Notation
 
-This specification applies to the ECDSA validator and original Istanbul digest profile described by [OIP-6](oip-6.md).
+This specification applies to Istanbul consensus as described by [OIP-6](oip-6.md).
 `K(x)` denotes Keccak-256, not standardized SHA3-256; `||` denotes byte concatenation.
 `BE(x)` is the minimal unsigned big-endian encoding of a nonnegative integer, with no leading zero bytes; `BE(0)` is empty.
 Byte slices use zero-based, end-exclusive offsets.
@@ -63,8 +63,8 @@ mixDigest = prefix || seed[0:16]
 
 The 32-byte header `mixDigest` must equal this construction exactly.
 Checking only the prefix is insufficient.
-This profile does not combine the reveal with a parent random value.
-Genesis has no proposer reveal to verify and retains its configured original Istanbul digest.
+The construction does not combine the reveal with a parent random value.
+Genesis has no proposer reveal to verify and retains its configured Istanbul digest.
 
 ### EVM Value
 
@@ -85,7 +85,7 @@ It must not be described as Ethereum's previous Beacon RANDAO mix or as requirin
 ## Rationale
 
 A recoverable signature associates the reveal with the authorized proposer without adding another public-key registry.
-The fixed prefix identifies the original Istanbul header profile, while the remaining 16 bytes bind the reveal hash.
+The fixed prefix identifies Istanbul headers, while the remaining 16 bytes bind the reveal hash.
 Hashing the whole digest produces the EVM value without exposing the fixed prefix directly as its upper half.
 It does not increase the underlying entropy or remove proposer influence.
 
@@ -94,7 +94,7 @@ Changing to fixed-width encoding, adding round or parent data, or adopting anoth
 
 ## Backwards Compatibility
 
-This proposal documents the existing ECDSA profile and activates no new randomness scheme.
+This proposal documents the existing random-reveal mechanism and activates no new randomness scheme.
 Changing the signed message, truncation, prefix, or final hash changes both the header and contract-visible execution results.
 Consumers relying on Ethereum's direct `mixHash` interpretation must use ONEchain's specified derivation instead.
 
@@ -123,13 +123,13 @@ Reference implementation: [go-cross revision 4c0838f](https://github.com/to-nexu
 - [ECDSA signing](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/backend/backend.go).
 - [EVM block context](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/evm.go).
 
-See the [random reveal verification notes](../assets/oip-6/verification.md#random-reveal) for the inspected paths and limits.
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-8/verification.md).
 
 ## Implementation and Activation
 
-[OIP-17](oip-17.md) includes this profile as an inherited Istanbul rule.
+[OIP-17](oip-17.md) includes this proposal as an inherited Istanbul rule.
 No new activation is scheduled.
-The applicability of this ECDSA profile must be established from the historical consensus configuration, not from the client's ability to decode several header formats.
+Its application to a network must be established from that network's historical consensus configuration.
 Deployed activation history and cross-client agreement remain unverified by this proposal.
 
 ## Security Considerations

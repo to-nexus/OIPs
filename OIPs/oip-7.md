@@ -373,6 +373,8 @@ Reference implementation: [go-cross at revision 4c0838f](https://github.com/to-n
 - [Round state and timers](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/core/core.go) and [round changes](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/core/roundchange.go).
 - [Quorum and proposer selection](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/validator/default.go).
 
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-7/verification.md).
+
 ## Implementation and Activation
 
 The reference client uses this protocol on every Istanbul network from genesis.

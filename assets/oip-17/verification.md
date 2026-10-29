@@ -16,7 +16,7 @@ The inspected revision is the local `main` reference, rather than the separate d
 | Transfer logs and random value | [core/evm.go][context] | Adventure selects `CrossTransfer`. Istanbul block contexts derive the random value from Keccak-256 of `MixDigest`. |
 | Fee calculation and collection | [eip1559.go][fees], [state_transition.go][transition] | Istanbul uses configured gas limits, elasticity, base fee change parameters, and bounds. In the Adventure profile, the entire execution fee goes to the configured beneficiary or execution coinbase; the base fee is not subtracted. |
 | Header and body boundaries | [Istanbul engine][engine], [block_validator.go][validator], [genesis.go][genesis] | Ordinary Adventure Istanbul headers reject withdrawal commitments. A body without a withdrawal commitment cannot carry a withdrawal list. Shanghai genesis construction uses an empty commitment and list. |
-| Consensus and randomness | [Istanbul engine][engine] | The Adventure random-reveal path verifies validator ECDSA signatures and uses the original Istanbul digest construction. |
+| Consensus and randomness | [Istanbul engine][engine] | The Adventure random-reveal path verifies validator ECDSA signatures and uses the Istanbul digest construction. |
 | Precompiles | [contracts.go][precompiles] | The Adventure profile selects the Berlin precompile map, addresses `0x01` through `0x09`. |
 | Contract deployment | [predeploy.go][predeploy], [upgrade.go][upgrades] | The default genesis allocation includes CrossEx, bridge contracts, and Multicall3. The fork-upgrade registry has no Adventure replacement hook. |
 

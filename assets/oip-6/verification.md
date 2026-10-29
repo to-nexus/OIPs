@@ -1,14 +1,10 @@
-# ECDSA Istanbul Proposals: Source Verification
+# OIP-6 Implementation Verification
 
-This record supports the Istanbul QBFT, base fee, random reveal, RPC compatibility, and blob availability proposals created on 2026-10-28.
-Source inspection used [go-cross main at revision 4c0838f][baseline].
-The separate development checkout's `HEAD` was not used as the specification baseline.
-The scope is the ECDSA validator, original digest, and header-voting profile; the blob document additionally describes the initial Cancun execution schedule and existing pool restriction.
-Other consensus profiles and later blob schedules are outside these proposals.
+This record describes checks performed against [go-cross revision 4c0838f][baseline].
+It is supporting evidence for [OIP-6](../../OIPs/oip-6.md), not a definition of protocol requirements or proof of network activation.
+Source inspection was performed on 2026-10-28, and the listed tests were run on 2026-10-29.
 
-## Istanbul QBFT
-
-Proposal: [OIP-6](../../OIPs/oip-6.md).
+## Source Inspection
 
 | Source | Inspected behavior |
 | --- | --- |
@@ -19,90 +15,32 @@ Proposal: [OIP-6](../../OIPs/oip-6.md).
 | [core/prepare.go][prepare], [core/commit.go][commit] | Prepared and committed transitions; the message signature and final committed-seal verification are distinct checks. |
 | [types/istanbul.go][istanbul-types], [types/block.go][block-types] | Six-element extra-data, filtered header hash, and round-bound committed-seal hash. |
 
-The proposal references the separately maintained block-format and consensus-protocol documents only for their ECDSA rules.
-It does not incorporate their additional profiles.
-The reference ECDSA COMMIT-message path does not independently validate the embedded committed seal at the same point as message authorization; final header verification checks the certificate.
+The proposal relies on [OIP-5](../../OIPs/oip-5.md) for the header format and [OIP-7](../../OIPs/oip-7.md) for the message exchange.
+The reference COMMIT-message path does not independently validate the embedded committed seal at the same point as message authorization; final header verification checks the certificate.
 The proposal therefore does not claim that message acceptance alone proves a valid final certificate.
 
-## Base Fee and Gas Limits
+## Existing Regression Tests
 
-Proposal: [OIP-9](../../OIPs/oip-9.md).
+The following tests passed in an isolated source snapshot of the reference revision:
 
-| Source | Inspected behavior |
-| --- | --- |
-| [eip1559.go][execution-fees] | Parent-height fee parameters, first-London initialization, asymmetric branch-specific bounds, and exact configured child gas limit. |
-| [config_istanbul.go][istanbul-config] | Initial values, ordered transition overrides, fallback elasticity/denominator, and optional fee bounds. |
-| [config.go][config] | Reference network presets and London activation. |
-| [state_transition.go][state-transition] | Execution fee accounting boundary; presence of a base fee does not imply burning. |
-| [vm/eips.go][evm-eips] | `BASEFEE` implementation inherited from EIP-3198. |
+| Package | Tests | Checked behavior |
+| --- | --- | --- |
+| [consensus/istanbul/backend][backend-tests] | `TestVoting`, `TestSnapshot`, `TestSaveAndLoad`, `TestSnapshotLoadValidatorsByteSorted` | Vote tallies and membership changes across blocks, epoch resets, snapshot persistence, and byte-ordered validator sets. |
+| [consensus/istanbul/backend][backend-tests] | `TestVerifyHeader`, `TestVerifyHeaders`, `TestGetProposer` | Header rejection for invalid extra-data, digest, uncles, difficulty, and timestamp; batch verification; proposer lookup. |
+| [consensus/istanbul/validator][validator-tests] | `TestValidatorSet`, `TestProposerPolicy`, `TestProposerPolicyRegistration` | Validator set operations, quorum size, and round-robin and sticky proposer selection. |
+| [consensus/istanbul/core][core-tests] | `TestJustifyTrue`, `TestJustifyFalse`, `TestPreprepare_RejectsStaleRoundChangeJustification` | Round-change justification acceptance and target-round matching. |
 
-The calculation table is a set of independently checked arithmetic examples, not output from running the Go consensus implementation.
-Historical configurations and deployed parameter transitions were not queried.
+To repeat these tests from a checkout of the reference revision:
 
-## Random Reveal
-
-Proposal: [OIP-8](../../OIPs/oip-8.md).
-
-| Source | Inspected behavior |
-| --- | --- |
-| [engine/engine.go][engine] | Minimal height/chain-ID concatenation, ECDSA reveal recovery, proposer membership, original digest construction, and genesis exception. |
-| [backend/backend.go][backend] | `Sign` hashes input with Keccak-256; committed-seal signing uses the separate direct-digest path. |
-| [types/istanbul.go][istanbul-types] | Original 16-byte digest prefix and extra-data reveal field. |
-| [core/evm.go][evm-context], [vm/instructions.go][instructions], [vm/jump_table.go][jump-table] | Keccak-256 of `MixDigest` in the Istanbul execution context, opcode `0x44`, and inherited Adventure instruction behavior. |
-
-Message-byte examples and the ambiguous height/chain-ID pair were checked as integer encodings.
-No signature, digest, or EVM execution vector was generated by a runtime test for this change.
-The proposal distinguishes canonical signature generation from unverified low-`s` rejection in every recovery path.
-
-## RPC Compatibility
-
-Proposal: [OIP-14](../../OIPs/oip-14.md).
-
-| Source | Inspected behavior |
-| --- | --- |
-| [eth/api_backend.go][eth-backend], [core/blockchain.go][blockchain] | Standard tag resolution, missing-marker errors, pruning cutoff, and safe/finalized updates after canonical Istanbul import. |
-| [eth/gasprice/feehistory.go][fee-history] | Next base fee, eligible receipt-gas weighting, fee-cap filtering, empty rows, percentile validation, and the pending fallback. |
-| [backend/api.go][istanbul-api], [backend/snapshot.go][snapshot] | Method arguments, unsupported Istanbul aliases, snapshot timing, response casing, configuration units, suppressed membership lookup errors, and author activity intervals. |
-| [backend/engine.go][backend-engine], [istanbul/config.go][runtime-config] | Namespace version and runtime timeout units. |
-
-The fee-percentile example and range arithmetic were checked independently.
-No node was started and no RPC method, including the mutating voting methods, was called.
-No provider exposure, history retention, or production endpoint behavior was audited.
-
-## Blob Availability
-
-Proposal: [OIP-10](../../OIPs/oip-10.md).
-
-| Source | Inspected behavior |
-| --- | --- |
-| [eip4844.go][blob-fees], [config.go][config], [protocol_params.go][parameters] | Initial schedule selection, header fields, excess formula, default limits, and the local availability window. |
-| [core/data_availability.go][availability], [types/blob_sidecar.go][sidecar] | Recent versus historical checks, metadata, transaction ordering, versioned hashes, KZG proofs, and sidecar cleanup. |
-| [engine/engine.go][engine], [core/blockchain.go][blockchain] | Availability verification before proposal voting and during import. |
-| [protocols/preprepare.go][wire-preprepare], [protocols/roundchange.go][wire-roundchange] | Optional sidecar elements outside signed message payloads. |
-| [core/block_validator.go][body-validator], [state_transition.go][state-transition] | Blob counts, exclusion of sidecars from body transactions, execution fee liability, and beneficiary crediting. |
-| [core/txpool/validation.go][pool] | Unconditional Istanbul pool rejection of blob transactions, independent of active blob execution. |
-| [internal/ethapi/api.go][eth-api] | Canonical sidecar lookups, missing/error results, response fields, and first-32-byte truncation when `fullBlob` is false. |
-| [vm/jump_table.go][jump-table], [vm/contracts.go][precompiles] | Blob opcodes and point-evaluation precompile in the initial execution profile. |
-
-The presence of these paths was verified from source; successful end-to-end blob production, voting, import, or retrieval was not demonstrated.
-The initial execution profile does not remove pool rejection or establish deployed support.
-
-## Documentation Validation
-
-The five proposals are numbered OIP-6, OIP-8, OIP-9, OIP-10, and OIP-14 and are Final retrospective specifications with `ONEchain Contributors` authorship.
-Each contains specification, rationale, compatibility, test cases, implementation/activation, and security sections.
-The proposal index links the new proposals, and Adventure links the Istanbul QBFT, base fee, and random reveal specifications.
-
-Validation covers metadata and section order, relative file links and anchors, pinned source-path existence at the reference revision, arithmetic examples, and whitespace.
-Existing unrelated files and concurrently added proposals were preserved.
-The validation record is shared to avoid repeating the same source revision and verification limits in five assets directories.
+```sh
+go test ./consensus/istanbul/backend ./consensus/istanbul/validator ./consensus/istanbul/core -run '^(TestVoting|TestSnapshot|TestSaveAndLoad|TestSnapshotLoadValidatorsByteSorted|TestVerifyHeader|TestVerifyHeaders|TestGetProposer|TestValidatorSet|TestProposerPolicy|TestProposerPolicyRegistration|TestJustifyTrue|TestJustifyFalse|TestPreprepare_RejectsStaleRoundChangeJustification)$' -count=1
+```
 
 ## Verification Limits
 
-No Go tests, live RPC tests, upstream execution conformance suite, KZG runtime tests, full historical replay, multi-node consensus run, or independent-client comparison were run for this documentation change.
-The proposal test tables are acceptance criteria unless identified above as arithmetic or encoding checks.
-No network activation, deployed binary, minimum release, or operational readiness was verified.
-Final status records specification stability; it does not establish runtime conformance beyond the evidence recorded above.
+The tests exercise single-process engine and snapshot logic; no multi-node consensus run, historical replay, or independent-client comparison was performed.
+The proposal's test table describes expected behavior; it is not a claim that every listed case has an executed regression test.
+No network activation, deployed binary, or minimum release was verified.
 
 [baseline]: https://github.com/to-nexus/go-cross/commit/4c0838f828f3a6300a1bd09fc70fec474a07a156
 [engine]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/engine/engine.go
@@ -115,27 +53,6 @@ Final status records specification stability; it does not establish runtime conf
 [commit]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/core/commit.go
 [istanbul-types]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/types/istanbul.go
 [block-types]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/types/block.go
-[execution-fees]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/misc/eip1559/eip1559.go
-[istanbul-config]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/params/config_istanbul.go
-[config]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/params/config.go
-[state-transition]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/state_transition.go
-[evm-eips]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/vm/eips.go
-[backend]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/backend/backend.go
-[evm-context]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/evm.go
-[instructions]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/vm/instructions.go
-[jump-table]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/vm/jump_table.go
-[eth-backend]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/eth/api_backend.go
-[blockchain]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/blockchain.go
-[fee-history]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/eth/gasprice/feehistory.go
-[istanbul-api]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/backend/api.go
-[runtime-config]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/config.go
-[blob-fees]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/misc/eip4844/eip4844.go
-[parameters]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/params/protocol_params.go
-[availability]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/data_availability.go
-[sidecar]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/types/blob_sidecar.go
-[wire-preprepare]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/protocols/preprepare.go
-[wire-roundchange]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/protocols/roundchange.go
-[body-validator]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/block_validator.go
-[pool]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/txpool/validation.go
-[eth-api]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/internal/ethapi/api.go
-[precompiles]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/vm/contracts.go
+[backend-tests]: https://github.com/to-nexus/go-cross/tree/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/backend
+[validator-tests]: https://github.com/to-nexus/go-cross/tree/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/validator
+[core-tests]: https://github.com/to-nexus/go-cross/tree/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/core

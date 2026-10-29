@@ -1,7 +1,7 @@
 ---
 oip: 6
-title: ECDSA Istanbul QBFT Consensus
-description: Validator authorization, quorum certificates, round changes, and header voting for the ECDSA Istanbul profile.
+title: Istanbul QBFT Consensus
+description: Validator authorization, quorum certificates, round changes, and header voting of Istanbul consensus.
 author: ONEchain Contributors
 status: Final
 type: Standards Track
@@ -9,13 +9,13 @@ category: Core
 created: 2026-10-28
 ---
 
-# OIP-6: ECDSA Istanbul QBFT Consensus
+# OIP-6: Istanbul QBFT Consensus
 
 ## Abstract
 
-This proposal specifies ONEchain's ECDSA Istanbul QBFT consensus profile.
+This proposal specifies ONEchain's Istanbul QBFT consensus.
 It defines the validator set that authorizes a block, quorum certificates, proposer and round rules, and changes to validator membership through header votes.
-It uses the original Istanbul digest and individual secp256k1 signatures.
+It uses the Istanbul digest prefix and individual secp256k1 signatures.
 
 ## Motivation
 
@@ -27,17 +27,16 @@ Validator election also uses a different threshold from block commitment, which 
 
 ### Scope and Related Specifications
 
-This profile uses ECDSA validator addresses, individual committed seals, and header-vote membership changes.
+Istanbul consensus uses ECDSA validator addresses, individual committed seals, and header-vote membership changes.
 It introduces no new activation or validator-selection mechanism.
 The following proposals supply related details:
 
-- [OIP-5](oip-5.md), limited here to its six-element legacy layout, original digest prefix, and ECDSA seals.
-- [OIP-7](oip-7.md), limited here to its ECDSA message exchange and round rules.
+- [OIP-5](oip-5.md), for the header fields, extra-data layout, block hash, and committed seals.
+- [OIP-7](oip-7.md), for the message exchange and round rules.
 - [OIP-8](oip-8.md), for proposer authentication and the digest suffix.
 - [OIP-9](oip-9.md), for execution gas limits and base fees.
 - [OIP-4](oip-4.md), for the execution-engine boundary.
 
-Other profiles described by those documents are not incorporated into this proposal.
 `K` denotes Keccak-256, and `RLP` denotes canonical Recursive Length Prefix encoding.
 
 ### Validator Set and Quorum
@@ -66,9 +65,9 @@ A non-genesis block must identify a known parent at height `n - 1`, use difficul
 Its timestamp must be at least the parent timestamp plus the configured block period at height `n`.
 The reference client also applies its configured local future-time allowance.
 The header's `coinbase` identifies an authorized validator and must agree with the recovered random-reveal signer.
-Its `mixDigest` is the original 16-byte Istanbul prefix followed by the reveal-derived suffix specified in [OIP-8](oip-8.md).
+Its `mixDigest` is the 16-byte Istanbul prefix followed by the reveal-derived suffix specified in [OIP-8](oip-8.md).
 
-The ECDSA extra-data produced by this profile is:
+The extra-data produced by Istanbul consensus is:
 
 ```text
 RLP([vanity, validators, vote, round, committedSeals, randomReveal])
@@ -80,7 +79,7 @@ The imported list does not replace the parent snapshot: the reference verifier d
 Likewise, producers normally use 32 vanity bytes, but the reference verifier does not require that length.
 
 Let `H[r]` be a copy of the header with the extra-data round set to `r` and committed seals cleared.
-For this six-element profile:
+For this six-element extra-data:
 
 ```text
 blockHash(H) = K(RLP(H[0]))
@@ -120,7 +119,7 @@ A prepared certificate may come from an older round and must not be rejected mer
 
 Justification validation must check distinct authorized sources, sequence, signatures, and matching prepared digests and rounds.
 With a prepared value, the proposer must preserve the highest prepared value supported by the valid justification; without one, it may propose a new valid block.
-The detailed certificate selection and treatment of invalid prepared values follow the ECDSA rules in [OIP-7](oip-7.md).
+The detailed certificate selection and treatment of invalid prepared values follow [OIP-7](oip-7.md).
 Local timeout lengths and buffering limits do not replace certificate validation or alter the block hash.
 
 ### Validator Votes
@@ -159,7 +158,7 @@ Explicit voting rules allow membership to be reconstructed from genesis and cano
 
 ## Backwards Compatibility
 
-This proposal records the existing ECDSA profile without changing its wire format or activation schedule.
+This proposal records existing Istanbul consensus behavior without changing its wire format or activation schedule.
 Applying a different sort order, quorum formula, hash filter, or snapshot timing can split consensus.
 Genesis validator lists, proposer policy, epoch, and block-period transitions must match the network configuration used for replay.
 
@@ -187,11 +186,11 @@ Reference implementation: [go-cross revision 4c0838f](https://github.com/to-nexu
 - [Snapshot derivation and voting](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/backend/engine.go).
 - [QBFT state machine](https://github.com/to-nexus/go-cross/tree/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/core).
 
-See the [Istanbul QBFT verification notes](../assets/oip-6/verification.md#istanbul-qbft) for inspected paths and limits.
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-6/verification.md).
 
 ## Implementation and Activation
 
-[OIP-17](oip-17.md) references this profile as an inherited consensus baseline.
+[OIP-17](oip-17.md) references this proposal as an inherited consensus baseline.
 This proposal assigns no activation height, timestamp, minimum release, or new validator set.
 Historical replay, interoperability, and deployed configuration verification remain required before claiming network-wide conformance.
 

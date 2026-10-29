@@ -16,7 +16,7 @@ Publishing an OIP does not approve its technical design or activate a change on 
 | [OIP-3](OIPs/oip-3.md) | Native Coin Transfer Logs | Standards Track | Core | Final |
 | [OIP-4](OIPs/oip-4.md) | Istanbul Chains Without the Merge Transition | Standards Track | Core | Review |
 | [OIP-5](OIPs/oip-5.md) | Istanbul Block Format | Standards Track | Core | Final |
-| [OIP-6](OIPs/oip-6.md) | ECDSA Istanbul QBFT Consensus | Standards Track | Core | Final |
+| [OIP-6](OIPs/oip-6.md) | Istanbul QBFT Consensus | Standards Track | Core | Final |
 | [OIP-7](OIPs/oip-7.md) | Istanbul Consensus Protocol | Standards Track | Networking | Final |
 | [OIP-8](OIPs/oip-8.md) | Validator Random Reveal and PREVRANDAO | Standards Track | Core | Final |
 | [OIP-9](OIPs/oip-9.md) | Base Fee and Block Gas Limit Rules | Standards Track | Core | Final |

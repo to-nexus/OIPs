@@ -221,6 +221,8 @@ Reference implementation: [go-cross at revision 4c0838f](https://github.com/to-n
 - [Validator snapshot application](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/backend/engine.go).
 - [Quorum size](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/consensus/istanbul/validator/default.go).
 
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-5/verification.md).
+
 ## Implementation and Activation
 
 This format applies from genesis on ONEchain Istanbul chains.

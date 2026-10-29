@@ -234,6 +234,8 @@ Reference implementation: [go-cross at revision 4c0838f](https://github.com/to-n
 - [Console binding](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/internal/web3ext/web3ext.go).
 - [Merkle library `github.com/xsleonard/go-merkle` v1.1.0](https://github.com/xsleonard/go-merkle/blob/v1.1.0/merkle.go), used with hash sorting enabled and leaf hashing disabled.
 
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-15/verification.md).
+
 ## Implementation and Activation
 
 The method is an RPC interface and requires no network activation.

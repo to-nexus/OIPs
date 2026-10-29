@@ -1,7 +1,7 @@
 ---
 oip: 10
 title: Blob Execution and Availability in Istanbul
-description: EIP-4844 execution, sidecar verification, and transaction-admission limits in the ECDSA Istanbul profile.
+description: EIP-4844 execution, sidecar verification, and transaction-admission limits on Istanbul chains.
 author: ONEchain Contributors
 status: Final
 type: Standards Track
@@ -13,7 +13,7 @@ created: 2026-10-28
 
 ## Abstract
 
-This proposal documents the ECDSA Istanbul integration of [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844) and [EIP-7516](https://eips.ethereum.org/EIPS/eip-7516).
+This proposal documents the Istanbul integration of [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844) and [EIP-7516](https://eips.ethereum.org/EIPS/eip-7516).
 It specifies the initial blob execution profile, sidecar availability checks before voting and import, and sidecar RPC behavior.
 The reference client rejects public blob transaction admission through the Istanbul transaction pool even though its block-processing paths contain blob support.
 This proposal preserves that restriction and does not activate a public blob service.
@@ -29,7 +29,7 @@ Applications also need a clear distinction between retrievable sidecars and acce
 
 ### Scope and Activation
 
-This profile covers ECDSA Istanbul consensus with the initial Cancun blob schedule.
+This proposal covers Istanbul consensus with the initial Cancun blob schedule.
 It adopts EIP-4844 transaction, commitment, and execution semantics except for the ONEchain differences stated below, and EIP-7516's `BLOBBASEFEE` instruction.
 Subsequent blob schedules, fee-formula revisions, and alternative data-availability schemes require separate specifications.
 
@@ -82,7 +82,7 @@ The withdrawal body is empty; these compatibility fields do not introduce a Beac
 Blob transactions must have a destination, a nonempty list of valid version-`0x01` hashes, and a blob fee cap sufficient for the block's blob base fee.
 Sender balance checks include the maximum blob-fee liability in addition to ordinary execution liability and value.
 The actual blob charge is blob gas used times the blob base fee.
-For this ECDSA Istanbul profile, that charge is credited to the configured fee beneficiary, falling back to the execution coinbase when no override is configured.
+On Istanbul chains, that charge is credited to the configured fee beneficiary, falling back to the execution coinbase when no override is configured.
 It is not burned as in Ethereum's EIP-4844 accounting.
 
 ### Public Transaction Admission
@@ -166,7 +166,7 @@ Documenting the pool restriction separately avoids overstating what imported exe
 
 ## Backwards Compatibility
 
-This proposal changes neither pool admission nor the existing ECDSA consensus message envelope.
+This proposal changes neither pool admission nor the existing consensus message envelope.
 Blocks before activation must retain their earlier field rules.
 Clients must not assume Ethereum fee burning, unlimited blob history, or that a shortened RPC blob can be verified as full data.
 Any change to the availability window, schedule, or admission policy requires an explicit compatibility review.
@@ -197,7 +197,7 @@ Reference implementation: [go-cross revision 4c0838f](https://github.com/to-nexu
 - [Pool admission restriction](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/txpool/validation.go).
 - [Sidecar RPC methods](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/internal/ethapi/api.go).
 
-See the [blob availability verification notes](../assets/oip-6/verification.md#blob-availability) for the remaining integration paths and verification limits.
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-10/verification.md).
 
 ## Implementation and Activation
 

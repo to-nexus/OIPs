@@ -50,9 +50,9 @@ The Shanghai instruction changes and Adventure opcode additions below adopt thei
 | [OIP-11](oip-11.md), execution fees | Execution fee crediting to the configured beneficiary. | Inherited Istanbul accounting. |
 | Shanghai execution changes | [EIP-3651][eip3651] warm coinbase, [EIP-3855][eip3855] `PUSH0`, and [EIP-3860][eip3860] initcode limits and metering. | Shanghai execution baseline, with its separate activation condition. |
 | Transient storage and memory copying | [EIP-1153][eip1153] `TLOAD`/`TSTORE` and [EIP-5656][eip5656] `MCOPY`. | Added to the Adventure instruction table. |
-| [OIP-8](oip-8.md) | [EIP-4399][eip4399] opcode semantics adapted to Istanbul-derived randomness. | Inherited `PREVRANDAO` instruction with ONEchain's ECDSA random-reveal and original digest rules. |
+| [OIP-8](oip-8.md) | [EIP-4399][eip4399] opcode semantics adapted to Istanbul-derived randomness. | Inherited `PREVRANDAO` instruction with ONEchain's random-reveal and Istanbul digest rules. |
 | [OIP-4](oip-4.md) and [OIP-5](oip-5.md), execution compatibility | Ethereum Merge/Beacon assumptions and [EIP-4895][eip4895] withdrawal differences. | Defines the limits of Shanghai adoption on an Istanbul network. |
-| [OIP-6](oip-6.md) | ECDSA Istanbul/QBFT consensus, validator authorization, seals, header commitments, and voting. | Inherited consensus baseline. |
+| [OIP-6](oip-6.md) | Istanbul QBFT consensus, validator authorization, seals, header commitments, and voting. | Inherited consensus baseline. |
 | [OIP-7](oip-7.md) | Istanbul consensus messages, round changes, timeouts, and proposer selection. | Inherited consensus protocol. |
 | [OIP-18](oip-18.md), informative network context | Applicable genesis predeploys and reserved addresses. | Network presets; Adventure does not itself trigger a system-contract replacement. |
 
@@ -168,7 +168,7 @@ Boundary tests must use a configuration limited to the execution rules listed in
 | Transient writes, nested reverts, static calls, and consecutive transactions | EIP-1153 ownership, rollback, write restrictions, gas, and transaction-scoped lifetime are preserved. |
 | Overlapping and zero-length memory copies, with memory expansion | EIP-5656 results and gas agree with the upstream specification. |
 | Same successful execution paid by sender or separate payer | Apply OIP-2 payment rules and the same fee recipient policy, without base fee burning. |
-| Istanbul `PREVRANDAO` execution | Value agrees with the specified header-derived random value and the validated ECDSA reveal path. |
+| Istanbul `PREVRANDAO` execution | Value agrees with the specified header-derived random value and the validated reveal path. |
 | Genesis versus ordinary Adventure block | Preserve the genesis withdrawal-commitment exception; reject withdrawal fields or bodies in ordinary Adventure-only Istanbul blocks. |
 | Replay across the activation boundary | Independent executions agree on state, receipts, logs, blooms, and block commitments. |
 

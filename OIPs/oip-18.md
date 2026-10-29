@@ -215,6 +215,8 @@ Reference implementation: [go-cross at revision 4c0838f](https://github.com/to-n
 - [Predeployed contract addresses](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/contracts/const.go).
 - [Network flags and network IDs](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/cmd/utils/flags.go).
 
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-18/verification.md).
+
 ## Implementation and Activation
 
 This document records source defaults and schedules no change.

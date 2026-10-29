@@ -273,6 +273,8 @@ Reference implementation: [go-cross at revision 4c0838f](https://github.com/to-n
 - [Fork identifier](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/forkid/forkid.go).
 - [Node record entry and discovery filters](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/eth/protocols/eth/discovery.go).
 
+Implementation checks and their scope are recorded in the separate [verification record](../assets/oip-12/verification.md).
+
 ## Implementation and Activation
 
 This profile describes the reference client at the revision above and schedules no network fork.
