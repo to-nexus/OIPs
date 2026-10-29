@@ -24,7 +24,7 @@ A separate account can sponsor gas while the sender retains control over the des
 An application can therefore accept a familiar signed dynamic fee transaction and arrange sponsorship without asking the sender to sign a different operation.
 
 A shared specification is needed for clients, wallets, signing services, and transaction indexers to agree on serialization, authorization, transaction identity, and balance changes.
-JSON-RPC conventions are described separately in the [Fee Delegation JSON-RPC Extensions draft](oip-draft-fee-delegation-rpc.md).
+JSON-RPC conventions are described separately in [OIP-13](oip-13.md).
 Sponsorship service eligibility and reward distribution are outside this proposal's scope.
 
 ## Specification

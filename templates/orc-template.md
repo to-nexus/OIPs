@@ -12,9 +12,9 @@ created: "<YYYY-MM-DD>"
 <!--
 Read ../OIPs/oip-1.md before preparing a proposal.
 Copy this file to ORCs/orc-draft-<short-title>.md and remove instructional comments.
-An editor assigns the ORC number before merge; do not choose one yourself.
+An editor assigns an unused number from the shared OIP/ORC sequence before merge; do not choose one yourself.
 ORCs use Standards Track and omit category. Protocol changes belong in OIPs.
-Remove discussions-to if a Draft has no thread yet.
+Remove discussions-to if a Draft has no thread yet or if the proposal qualifies for retrospective Final registration under OIP-1.
 Add requires after created only for ORC dependencies, as comma-separated numbers.
 Identify and link OIP dependencies in the Specification instead.
 Add last-call-deadline immediately after status only when entering Last Call.
@@ -54,7 +54,7 @@ Replace all placeholders and update the ORCs/README.md index after number assign
 
 ## Implementation and Activation
 
-<!-- Required for coordinated deployment; otherwise remove this section. -->
+<!-- Required for coordinated deployment or retrospective Final registration; otherwise remove this section. -->
 <!-- Record affected applications, implementation and test evidence, coordination, and deployment conditions. -->
 <!-- Distinguish plans from confirmed deployment; mark unknown details as undecided and link applicable decisions. -->
 

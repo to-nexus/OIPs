@@ -10,7 +10,7 @@ The following tests passed in an isolated source snapshot of the reference revis
 | Test | Checked behavior |
 | --- | --- |
 | [TestFeeDelegationSigning](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/types/transaction_signing_test.go#L37) | Sender and payer signing, address recovery, and the shared inner/wrapper transaction hash. |
-| [TestFeeDelegationMinedChargesPayer](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/feedelegation_test.go#L97) | Gas charged to the payer, value charged to the sender, and pre-PoSA beneficiary fee collection. |
+| [TestFeeDelegationMinedChargesPayer](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/feedelegation_test.go#L97) | Gas charged to the payer, value charged to the sender, and beneficiary fee collection. |
 
 To repeat these tests from a checkout of the reference revision:
 
