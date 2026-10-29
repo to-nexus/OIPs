@@ -1,23 +1,23 @@
 ---
-oip: TBD
+oip: 13
 title: Fee Delegation JSON-RPC Extensions
 description: JSON-RPC submission and result formats for fee-delegated transactions and their simulation support boundaries.
 author: ONEchain Contributors
-status: Draft
+status: Final
 type: Standards Track
 category: Interface
 created: 2026-10-28
 requires: 2
 ---
 
-# OIP-TBD: Fee Delegation JSON-RPC Extensions
+# OIP-13: Fee Delegation JSON-RPC Extensions
 
 ## Abstract
 
 This proposal specifies the JSON-RPC representation and submission of fee-delegated dynamic fee transactions defined by [OIP-2](oip-2.md).
 It defines the sender and payer fields exposed by transaction and receipt queries, raw-submission behavior, and the boundary between optional sponsorship services and transaction validity.
 It also records the reference client's current transaction-construction and gas-estimation limitations.
-This Draft documents go-cross at commit `4c0838f828f3a6300a1bd09fc70fec474a07a156` and does not change consensus rules.
+This proposal documents go-cross at commit `4c0838f828f3a6300a1bd09fc70fec474a07a156` and does not change consensus rules.
 
 ## Motivation
 
@@ -97,7 +97,11 @@ When a GasAbs service is configured, the reference client also applies an option
 - An existing `0x07` wrapper is not re-signed by this automatic wrapping path.
 - A non-eligible transaction continues through ordinary submission unless a separate policy check rejects it.
 - Blacklisted sender or destination addresses can cause rejection, including for an already signed wrapper.
-- If an approved sponsorship request fails, submission returns an error; it does not silently fall back to charging the sender.
+- A successful service response can return the original `0x02` transaction without sponsorship; ordinary sender-funded admission then applies.
+- If the service request returns an error, that submission attempt stops rather than locally falling back to the original transaction.
+
+[OIP-16](oip-16.md) specifies the service methods, policy synchronization, and the reference server's retry behavior.
+In particular, a repeated request can receive the original transaction successfully after a prior policy error; an RPC success alone does not establish sponsorship.
 
 With no GasAbs client configured, the raw submission path does not add sponsorship.
 Service-specific signing methods, approval lists, and availability are not requirements for validating an independently signed wrapper.
@@ -122,7 +126,7 @@ For nonzero fee caps, the reference estimator limits the gas allowance using the
 The execution message built from these arguments has no fee payer.
 A sender with insufficient gas funds can therefore receive an estimation error even when a separate payer could fund a valid wrapper.
 Gas estimation, any state overrides, and optional sponsorship approval are separate operations; none guarantees admission or inclusion of the signed transaction.
-Support for payer-aware construction or estimation would require additional specified input and execution semantics and is not asserted by this draft.
+Support for payer-aware construction or estimation would require additional specified input and execution semantics and is not asserted by this proposal.
 
 ## Rationale
 
@@ -140,7 +144,7 @@ Ordinary transaction and receipt representations retain their existing meanings 
 Consumers of type `0x7` must distinguish the sender signature from the payer signature and use the transaction hash defined by OIP-2.
 The pending `gasPrice` value is a fee cap rather than a confirmed execution price.
 
-This Draft does not add payer-aware arguments to the reference client's construction or simulation methods.
+This proposal does not add payer-aware arguments to the reference client's construction or simulation methods.
 Any future input extension must define its authorization, balance, and failure semantics explicitly.
 RPC changes described here do not modify OIP-2's transaction encoding, signatures, or block-validity rules.
 
@@ -186,7 +190,7 @@ Other ordinary transaction fields and pending block-location fields are omitted 
 | Estimate with a sender lacking gas funds while a separate payer is funded | The pinned estimator can fail because it does not accept a payer through `TransactionArgs`. |
 | Add `feePayer` to fill, sign, call, or estimation arguments | Do not treat the extra field as supported sponsorship authorization. |
 
-During preparation of this draft, temporary checks against the reference revision verified the response excerpt, pending and included price fields, receipt fields, raw-submission hash and payer rejection, and construction of simulation arguments without a payer.
+During preparation of this proposal, temporary checks against the reference revision verified the response excerpt, pending and included price fields, receipt fields, raw-submission hash and payer rejection, and construction of simulation arguments without a payer.
 The submission checks used a capturing backend and did not exercise real pool admission or mining.
 The existing [TestEstimateGas](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/internal/ethapi/api_test.go#L722) also passed; it can be run with `go test ./internal/ethapi -run '^TestEstimateGas$' -count=1`.
 The optional sponsorship-service cases require separate integration tests with the configured service; the encoding vector does not verify them.
@@ -210,7 +214,7 @@ Optional GasAbs behavior depends on the node's service configuration and local p
 
 Affected components are RPC clients and servers, wallets, sponsoring services, and indexers.
 This interface depends on OIP-2 support but does not introduce a new consensus activation condition.
-Publication of this Draft does not establish deployment on a particular RPC endpoint or network.
+Publication of this proposal does not establish deployment on a particular RPC endpoint or network.
 Future interface additions require client coordination and separate verification of the advertised method behavior.
 
 ## Security Considerations

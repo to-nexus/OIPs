@@ -6,6 +6,7 @@
 
 <!-- Link the discussion thread, summarize material feedback, and identify the responsible author or maintainer. -->
 <!-- For a status change, give the current and requested statuses and the evidence required by OIP-1. -->
+<!-- For retrospective Final registration, identify the existing behavior, supporting evidence, accuracy checks, and remaining verification limits. A separate discussion thread or historical adoption approval is not required. -->
 
 ## Checklist
 
