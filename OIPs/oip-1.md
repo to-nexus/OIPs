@@ -65,7 +65,7 @@ ORCs are maintained in the [ORCs directory and index](../ORCs/README.md).
 They follow the submission, review, lifecycle, and maintenance requirements in this document with these differences:
 
 - Authors MUST use the [ORC template](../templates/orc-template.md) and submit drafts as `ORCs/orc-draft-<short-title>.md`.
-- Editors assign ORC numbers independently of OIP numbers, starting at 1. Before merge, the file MUST be renamed to `ORCs/orc-N.md` and added to the ORC index.
+- Editors assign ORC numbers from the same sequence as OIPs, following the shared numbering rules below. Before merge, the file MUST be renamed to `ORCs/orc-N.md` and added to the ORC index.
 - The metadata MUST use `orc` instead of `oip`, with `TBD` before assignment and the assigned number before merge. The heading MUST use `ORC-N` instead of `OIP-N`.
 - ORCs MUST use `type: Standards Track` and omit `category`, since their application-level scope is defined by the ORC namespace.
 - In an ORC, `requires` lists ORC numbers. Dependencies on OIPs MUST be identified and linked in the Specification rather than placed in that field.
@@ -96,10 +96,13 @@ An editor's merge permission does not grant authority to activate a protocol cha
 2. The author MUST prepare a Markdown document using the [proposal template](../templates/oip-template.md) and submit it by pull request.
 3. Before assignment, the filename MUST be `OIPs/oip-draft-<short-title>.md` and the number MUST be `TBD`.
 4. An editor MUST check that the draft has a meaningful specification, required metadata and sections, and enough context for review.
-5. The editor assigns the next unused positive integer, taking published proposals and all prior assignments into account; OIP-1 is reserved for this process document.
+5. The editor assigns the next unused positive integer across OIPs and ORCs, taking published proposals and all prior assignments into account; OIP-1 is reserved for this process document.
 6. Before merge, the author MUST rename the file to `OIPs/oip-N.md`, replace `TBD` with the assigned number, update the heading and asset paths, and add the proposal to the [README index](../README.md#proposals).
 
-OIP numbers are independent of issue and pull request numbers.
+OIPs and ORCs share one number sequence, even though they use separate prefixes, directories, and indexes.
+An assigned number MUST identify only one proposal across both document types.
+For example, number 20 belongs to [ORC-20](../ORCs/orc-20.md) and MUST NOT be assigned to an OIP.
+Proposal numbers are independent of issue and pull request numbers.
 Once assigned, a number MUST NOT be reused or reassigned to an unrelated proposal, including when its submission closes without merging.
 Published proposals MUST retain their number and file path; withdrawn and superseded documents remain available as historical records.
 
@@ -234,7 +237,7 @@ The document MUST have a heading of the form `# OIP-N: Title` after its metadata
 Before number assignment, the heading MAY use `OIP-TBD`.
 Dependencies MUST NOT include the proposal itself or form a cycle.
 An OIP's `requires` field lists only OIP numbers; an ORC's lists only ORC numbers.
-Dependencies across these namespaces MUST be identified and linked in the Specification.
+Dependencies between OIPs and ORCs MUST be identified and linked in the Specification.
 External EIPs and BEPs are cited in the text and do not use `requires`.
 
 The following sections MUST appear in order; conditionally required and optional sections are included where applicable.
@@ -287,6 +290,7 @@ The relevant proposal index MUST be kept consistent with proposal metadata in ea
 The document format and editorial stages follow the general approach of EIP-1, while the repository index and explicit attention to implementation and activation draw on BEP-1.
 The process uses Meta for process proposals and keeps application-level standards in ORCs so that their scope is distinct from protocol and client changes.
 Sequential editor-assigned numbers avoid coupling proposal identifiers to unrelated issue or pull request activity.
+A shared number sequence prevents unrelated protocol and application proposals from using the same number.
 
 Final describes specification stability; deployment evidence is recorded separately so readers can distinguish an accepted design from behavior available on a particular network.
 A 14-day Last Call provides a predictable minimum review period, while Living supports ongoing maintenance of process documents.

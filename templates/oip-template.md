@@ -13,7 +13,7 @@ created: "<YYYY-MM-DD>"
 <!--
 Read ../OIPs/oip-1.md before preparing a proposal.
 Copy this file to OIPs/oip-draft-<short-title>.md and remove instructional comments.
-An editor assigns the OIP number before merge; do not choose one yourself.
+An editor assigns an unused number from the shared OIP/ORC sequence before merge; do not choose one yourself.
 Choose type: Standards Track, Meta, or Informational.
 For Standards Track, choose category: Core, Networking, or Interface.
 For application-level standards, use orc-template.md and the ORCs directory instead.

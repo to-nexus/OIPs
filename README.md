@@ -9,6 +9,8 @@ Publishing an OIP does not approve its technical design or activate a change on 
 
 ## Proposals
 
+Proposal numbers are shared with ORCs; number 20 belongs to the [ORCs](ORCs/README.md#proposals).
+
 | Number | Title | Type | Category | Status |
 | --- | --- | --- | --- | --- |
 | [OIP-1](OIPs/oip-1.md) | OIP Purpose and Guidelines | Meta | — | Living |
