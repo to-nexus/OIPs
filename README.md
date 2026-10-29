@@ -31,6 +31,26 @@ Proposal numbers are shared with ORCs; number 20 belongs to the [ORCs](ORCs/READ
 | [OIP-16](OIPs/oip-16.md) | Gas Abstraction Sponsorship Service | Standards Track | Interface | Final |
 | [OIP-17](OIPs/oip-17.md) | Adventure Hardfork | Meta | — | Review |
 | [OIP-18](OIPs/oip-18.md) | ONEchain Network Parameters and Genesis | Informational | — | Final |
+| [OIP-19](OIPs/oip-19.md) | Deterministic Istanbul System Transactions | Standards Track | Core | Draft |
+| [OIP-21](OIPs/oip-21.md) | System Contract Upgrades at Fork Boundaries | Standards Track | Core | Draft |
+| [OIP-22](OIPs/oip-22.md) | Stake-Based Validator Council Selection | Standards Track | Core | Draft |
+| [OIP-23](OIPs/oip-23.md) | BLS Istanbul Consensus and Header Extensions | Standards Track | Core | Draft |
+| [OIP-24](OIPs/oip-24.md) | PoSA Random Reveal | Standards Track | Core | Draft |
+| [OIP-25](OIPs/oip-25.md) | PoSA Fee Routing and Reward Distribution | Standards Track | Core | Draft |
+| [OIP-26](OIPs/oip-26.md) | Offline Validator Penalties and Mitigation | Standards Track | Core | Draft |
+| [OIP-27](OIPs/oip-27.md) | BLS Signature Verification Precompile | Standards Track | Core | Draft |
+| [OIP-28](OIPs/oip-28.md) | Validator Peer Admission | Standards Track | Networking | Draft |
+| [OIP-29](OIPs/oip-29.md) | EOA Code Delegation Transactions | Standards Track | Core | Draft |
+| [OIP-30](OIPs/oip-30.md) | Calldata Gas Floor | Standards Track | Core | Draft |
+| [OIP-31](OIPs/oip-31.md) | Historical Block Hash Storage | Standards Track | Core | Draft |
+| [OIP-32](OIPs/oip-32.md) | Blob Upgrade Compatibility for Istanbul | Standards Track | Core | Draft |
+| [OIP-33](OIPs/oip-33.md) | Beacon Interface Adaptations for Istanbul | Standards Track | Core | Draft |
+| [OIP-34](OIPs/oip-34.md) | Breakpoint Hardfork | Meta | — | Draft |
+| [OIP-35](OIPs/oip-35.md) | Istanbul Digest V2 | Standards Track | Core | Draft |
+| [OIP-36](OIPs/oip-36.md) | Optional System Call Omission Check | Standards Track | Core | Draft |
+| [OIP-37](OIPs/oip-37.md) | BreakpointBravo Hardfork | Meta | — | Draft |
+| [OIP-38](OIPs/oip-38.md) | Transaction Gas Limit Cap | Standards Track | Core | Draft |
+| [OIP-39](OIPs/oip-39.md) | Osaka Execution Profile | Meta | — | Draft |
 
 ## License
 
