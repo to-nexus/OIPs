@@ -16,3 +16,14 @@ Start a proposal with the [ORC template](../templates/orc-template.md).
 | [ORC-42](orc-42.md) | Signed Token Approvals | Standards Track | Draft |
 | [ORC-43](orc-43.md) | Token-Denominated Gas Payment | Standards Track | Draft |
 | [ORC-44](orc-44.md) | Wallet and Paymaster Interfaces | Standards Track | Draft |
+| [ORC-45](orc-45.md) | Signed Token Transfer Authorization | Standards Track | Draft |
+| [ORC-46](orc-46.md) | Bridged Fungible Tokens | Standards Track | Draft |
+| [ORC-47](orc-47.md) | Tokenized Staking and Yield Vault Adapters | Standards Track | Draft |
+| [ORC-48](orc-48.md) | NFT Metadata and Marketplace Interoperability | Standards Track | Draft |
+| [ORC-49](orc-49.md) | Multi-Token Game Asset Interoperability | Standards Track | Draft |
+
+## Unnumbered Drafts
+
+| Proposal | Type | Status |
+| --- | --- | --- |
+| [Soulbound Token Standard](orc-draft-soulbound-tokens.md) | Standards Track | Draft |
