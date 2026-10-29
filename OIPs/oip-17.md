@@ -201,7 +201,7 @@ For any future activation or historical deployment record, maintainers must iden
 Node operators, validators, RPC providers, wallets, and receipt consumers must coordinate any activation on a network where Adventure is not already active.
 Historical network activation evidence, minimum compatible release identification, and the combined profile test results remain unverified in this proposal.
 
-This proposal remains in Review because its required OIP-4 dependency has an unresolved reference-client validation gap.
+This proposal remains in Review until its required OIP-4 dependency reaches Final.
 Final registration requires OIP-4 to identify and verify the implementing revision and reach Final; the dependency list above is otherwise resolved.
 
 ## Security Considerations

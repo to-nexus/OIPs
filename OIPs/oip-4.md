@@ -176,11 +176,7 @@ Upgrade activation uses the presence of Istanbul consensus in place of post-merg
 The EVM treats a block with difficulty `1` as post-merge because its block context carries the `PREVRANDAO` value.
 
 Applying Istanbul validation and finalization on every import path, as required by [Header Validation](#header-validation), is a client conformance requirement rather than a consensus change.
-Revision 4c0838f does not consistently enforce this requirement: its merge-aware wrapper selects proof-of-stake verification and finalization for zero-difficulty headers instead of routing them through Istanbul validation.
-The block-production configuration described above does not close this validation gap.
-
-The correction is maintained on a separate client branch and has not yet been merged or deployed.
-This proposal remains in Review until a merged implementing revision is referenced and the affected header verification, block import, and finalization paths have been verified.
+This proposal remains in Review until a merged implementing revision is referenced and its header verification, block import, and finalization paths have been verified against this requirement.
 
 This specification records existing behavior and schedules no new fork.
 The reference source settings do not establish the activation history of deployed networks.

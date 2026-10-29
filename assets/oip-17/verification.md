@@ -35,8 +35,7 @@ No runtime tests, upstream execution conformance suite, full Istanbul boundary r
 The proposal's test matrix records acceptance criteria that still need execution and evidence.
 No RPC query, deployed binary inspection, minimum-release audit, or historical activation audit was performed.
 The normative OIP dependencies are 2, 3, 4, 5, 6, 7, 8, 9, and 11; companion interfaces and informative network presets are not required dependencies.
-OIP-4 remains in Review because revision 4c0838f can route zero-difficulty headers to proof-of-stake verification and finalization.
-The correction has not yet been merged or deployed, so OIP-17 also remains in Review.
+OIP-17 remains in Review until its dependency OIP-4 advances.
 
 [config]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/params/config.go
 [instructions]: https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/vm/jump_table.go
