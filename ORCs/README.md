@@ -10,7 +10,7 @@ Start a proposal with the [ORC template](../templates/orc-template.md).
 
 | Number | Title | Type | Status |
 | --- | --- | --- | --- |
-| [ORC-20](orc-20.md) | Fungible Token Standard | Standards Track | Draft |
+| [ORC-20](orc-20.md) | Fungible Token Standard | Standards Track | Final |
 | [ORC-40](orc-40.md) | Modular Smart Account Interoperability | Standards Track | Draft |
 | [ORC-41](orc-41.md) | Session Permissions and Spending Policies | Standards Track | Draft |
 | [ORC-42](orc-42.md) | Signed Token Approvals | Standards Track | Draft |
