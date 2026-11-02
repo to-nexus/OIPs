@@ -3,7 +3,7 @@ orc: 20
 title: Fungible Token Standard
 description: An ERC-20 extension with required metadata and interoperability rules for ONEchain token contracts.
 author: ONEchain Contributors
-status: Review
+status: Final
 type: Standards Track
 created: 2026-10-29
 ---
@@ -194,31 +194,47 @@ Each case is independent, and `B` starts with a zero balance unless otherwise st
 | Two contracts share a symbol | Treat them as distinct assets by chain ID and address. |
 | Native and token transfer logs appear in one receipt | Classify them using their emitting addresses and the applicable specification. |
 
-These are conformance requirements, not a report that existing deployments have passed them.
+The token-side cases were run against both reference implementations and their deployments using the [conformance test](../assets/orc-20/ORC20Conformance.t.sol), with results in the [verification record](../assets/orc-20/verification.md).
+The classification and display cases describe consumer behavior and were not executed.
 Optional extensions need additional tests for their own behavior and integration assumptions.
 
 ## Reference Implementation
 
-OpenZeppelin's [ERC20 implementation][oz-erc20] and [IERC20Metadata interface][oz-metadata] provide the existing ERC-20 and metadata interfaces used by the inspected token contracts.
+OpenZeppelin's [ERC20 implementation][oz-erc20] and [IERC20Metadata interface][oz-metadata] provide the existing ERC-20 and metadata interfaces; CrossToken uses version 5.1.0 and the bridge token below uses version 5.2.0.
 They are implementation building blocks; conforming behavior still depends on the derived token and its extensions.
 
 Two inspected implementation examples are:
 
-- [CrossToken at revision f4d1a0c][cross-token], which inherits ERC-20 metadata and adds an owner-only `burn` method and signed approvals.
+- [CrossToken at revision f4d1a0c][cross-token], which inherits ERC-20 metadata and adds an owner-only `burn` method and signed approvals; its inherited `burnFrom` remains available to spenders with an allowance.
 - [CrossMintableERC20V2 at revision b6be327][bridge-token], which supplies constructor-selected immutable decimals and role-controlled minting and burning.
 
-These source references illustrate different administration and supply models sharing the proposed base interface.
-Their legacy names are retained only to identify the source; no deployment or complete ORC-20 conformance is asserted here.
+These source references illustrate different administration and supply models sharing the base interface.
+Their legacy names are retained only to identify the source.
+Their deployments are recorded in [Implementation and Activation](#implementation-and-activation).
+Later bridge-contracts revisions, starting at 3401906, replace CrossMintableERC20V2 with a beacon-upgradeable implementation; an administrator of the creating factory can replace the implementation, including its decimals behavior, for every such token at once.
+Tokens from that design are outside the recorded deployments and need that upgrade authority documented under this standard.
 
 ## Implementation and Activation
 
-ORC-20 is in Review and defines proposed contract and integration requirements.
+ORC-20 is registered as Final under [OIP-1's retrospective path](../OIPs/oip-1.md#documenting-existing-deployed-behavior).
+It documents the token interface of the deployed contracts below.
 It requires no hardfork or protocol activation timestamp.
 Token issuers can assess existing contracts against the specification or implement it in newly deployed contracts.
 Wallets, indexers, and services must verify metadata, call results, and any optional extensions for each supported token address.
 
+| Token | Network and address | Source | Runtime code |
+| --- | --- | --- | --- |
+| `CROSS` | BNB Smart Chain mainnet (`56`), `0x6bf62ca91e397B5A7d1D6bCe97D9092065d7A510` | CrossToken at f4d1a0c | Byte-identical to the Solidity `0.8.22` build, apart from immutable values. |
+| `USDTx` | ONEchain mainnet (`612055`), `0x1c37d4F44ed3eC86d96868001CfA89e97112a85C` | CrossMintableERC20V2 at b6be327 | Identical to a Solidity `0.8.28` build, apart from immutable values and the metadata hash. |
+| `GHUBx` | ONEchain mainnet (`612055`), `0xB506d82CA638548a597Ac8143217534C524b81dA` | CrossMintableERC20V2 at b6be327 | Identical to a Solidity `0.8.28` build, apart from immutable values and the metadata hash. |
+
+All three tokens report 18 decimals.
+`CROSS` is the BSC representation of native ONE through the ONEchain bridge; native ONE itself remains outside ORC-20 as described above.
+`USDTx` and `GHUBx` are ONEchain bridge representations of BSC USDT and Kaia GHUB, created by the bridge's token factory.
+The [verification record](../assets/orc-20/verification.md) records the build settings, existing tests, conformance test runs against the source builds and mainnet forks, and their limits.
+
 The interface declaration was compiled with Solidity `0.8.35`; all nine function selectors, return types, mutability declarations, and both event encodings matched `IERC20Metadata`.
-Token runtime conformance, deployed contract behavior, and consumer interoperability remain unverified for this proposal.
+Consumer interoperability with wallets, exchanges, and indexers remains unverified.
 No token deployment or upgrade is performed by registering ORC-20.
 
 ## Security Considerations
@@ -240,7 +256,7 @@ Any extension that calls external contracts needs its own reentrancy and authori
 Copyright and related rights waived via [CC0](../LICENSE.md).
 
 [erc20]: https://eips.ethereum.org/EIPS/eip-20
-[bep20]: https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP20.md
+[bep20]: https://github.com/bnb-chain/BEPs/blob/7d2c2f723b0fcdf2e17312b4faa0123447ce9b74/BEPs/BEP20.md
 [oz-erc20]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v5.1.0/contracts/token/ERC20/ERC20.sol
 [oz-metadata]: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v5.1.0/contracts/token/ERC20/extensions/IERC20Metadata.sol
 [cross-token]: https://github.com/to-nexus/cross-token/blob/f4d1a0c9578838f5ccbdad20294c2e44ddd59cbe/contracts/CrossToken.sol

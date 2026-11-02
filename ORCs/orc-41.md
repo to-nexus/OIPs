@@ -127,7 +127,8 @@ Implementation checks and their scope are recorded in the separate [verification
 
 ## Implementation and Activation
 
-Before Review, choose the supported module combination and validate restricted-session behavior through actual account, executor, hook, and EntryPoint paths.
+This proposal is intended for Final registration under [OIP-1's retrospective path](../OIPs/oip-1.md#documenting-existing-deployed-behavior); requirements that the referenced implementations do not meet must be implemented or moved to a separate proposal before then.
+Before that registration, choose the supported module combination and validate restricted-session behavior through actual account, executor, hook, and EntryPoint paths.
 Complete bypass and revocation tests before claiming a bounded spending product.
 This Draft installs or revokes no module.
 

@@ -1,5 +1,5 @@
 ---
-orc: TBD
+orc: 50
 title: Soulbound Token Standard
 description: An ERC-5192 profile for permanently account-bound tokens with optional ERC-5484 consent and burn authorization.
 author: ONEchain Contributors
@@ -9,7 +9,7 @@ created: 2026-10-29
 requires: 48
 ---
 
-# ORC-TBD: Soulbound Token Standard
+# ORC-50: Soulbound Token Standard
 
 ## Abstract
 
@@ -155,7 +155,7 @@ All applicable cases are required conformance checks, not passing runtime result
 
 No ONEchain SBT contract, issuance service, or wallet consumer was selected or validated for this Draft.
 The pinned upstream specifications define the interface basis.
-Source scope and interface identifier checks are recorded in the [verification record](../assets/orc-draft-soulbound-tokens/verification.md).
+Source scope and interface identifier checks are recorded in the [verification record](../assets/orc-50/verification.md).
 
 ## Implementation and Activation
 

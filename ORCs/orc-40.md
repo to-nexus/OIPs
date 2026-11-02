@@ -174,7 +174,8 @@ Implementation checks and their scope are recorded in the separate [verification
 
 ## Implementation and Activation
 
-Before Review, publish supported implementation/factory/delegate addresses and code revisions for each EntryPoint variant.
+This proposal is intended for Final registration under [OIP-1's retrospective path](../OIPs/oip-1.md#documenting-existing-deployed-behavior); requirements that the referenced implementations do not meet must be implemented or moved to a separate proposal before then.
+Before that registration, publish supported implementation/factory/delegate addresses and code revisions for each EntryPoint variant.
 Validate module discovery, nonce routing, initialization, upgrade authorization, supported execution modes, and supported validator signature encodings with the intended bundler and at least one consuming application and permit token.
 Choose any optional signature extension through a separate compatibility review.
 The contracts are compiled for the Prague EVM target and use transient storage; on ONEchain they require the instructions enabled by [OIP-17](../OIPs/oip-17.md), and OneAccount7702 also requires OIP-29.

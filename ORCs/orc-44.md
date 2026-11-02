@@ -51,7 +51,7 @@ The service selects the [ORC-43](orc-43.md) payment mode and returns it in the p
 Permit and approval requests follow [ORC-42](orc-42.md).
 Wallets MUST decode the returned paymaster data and reject a result that changes the user-approved owner, spender, chain, token, payment mode, or maximum charge.
 The reference service reports a required permit with error code `-32002` and a required approval with `-32003`, whose data can set `separateTransaction`.
-These codes overlap the [EIP-1474](https://eips.ethereum.org/EIPS/eip-1474) meanings of `-32002` and `-32003`, so the interoperable codes and error-data schema remain a Review decision; this Draft allocates no wallet capability identifier.
+These codes overlap the [EIP-1474](https://eips.ethereum.org/EIPS/eip-1474) meanings of `-32002` and `-32003`, so the interoperable codes and error-data schema must be decided before Final registration; this Draft allocates no wallet capability identifier.
 
 ### Prepare, Confirm, and Submit
 
@@ -117,7 +117,8 @@ Implementation checks and their scope are recorded in the separate [verification
 
 ## Implementation and Activation
 
-Before Review, pin supported upstream schemas and service versions, define token context/error fields, and verify final confirmation with actual wallet and paymaster deployments.
+This proposal is intended for Final registration under [OIP-1's retrospective path](../OIPs/oip-1.md#documenting-existing-deployed-behavior); requirements that the referenced implementations do not meet must be implemented or moved to a separate proposal before then.
+Before that registration, pin supported upstream schemas and service versions, define token context/error fields, and verify final confirmation with actual wallet and paymaster deployments.
 Application-selected sponsorship is additional integration work, not a capability established by the inspected sample.
 This Draft makes no service deployment or availability claim.
 

@@ -9,14 +9,14 @@ Publishing an OIP does not approve its technical design or activate a change on 
 
 ## Proposals
 
-Proposal numbers are shared with ORCs; numbers 20 and 40 through 49 belong to the [ORCs](ORCs/README.md#proposals).
+Proposal numbers are shared with ORCs; numbers 20 and 40 through 50 belong to the [ORCs](ORCs/README.md#proposals).
 
 | Number | Title | Type | Category | Status |
 | --- | --- | --- | --- | --- |
 | [OIP-1](OIPs/oip-1.md) | OIP Purpose and Guidelines | Meta | — | Living |
 | [OIP-2](OIPs/oip-2.md) | Fee-Delegated Dynamic Fee Transactions | Standards Track | Core | Final |
 | [OIP-3](OIPs/oip-3.md) | Native Coin Transfer Logs | Standards Track | Core | Final |
-| [OIP-4](OIPs/oip-4.md) | Istanbul Chains Without the Merge Transition | Standards Track | Core | Review |
+| [OIP-4](OIPs/oip-4.md) | Istanbul Chains Without the Merge Transition | Standards Track | Core | Draft |
 | [OIP-5](OIPs/oip-5.md) | Istanbul Block Format | Standards Track | Core | Final |
 | [OIP-6](OIPs/oip-6.md) | Istanbul QBFT Consensus | Standards Track | Core | Final |
 | [OIP-7](OIPs/oip-7.md) | Istanbul Consensus Protocol | Standards Track | Networking | Final |
@@ -29,7 +29,7 @@ Proposal numbers are shared with ORCs; numbers 20 and 40 through 49 belong to th
 | [OIP-14](OIPs/oip-14.md) | ONEchain RPC Compatibility Profile | Standards Track | Interface | Final |
 | [OIP-15](OIPs/oip-15.md) | Checkpoint Merkle Proof RPC | Standards Track | Interface | Final |
 | [OIP-16](OIPs/oip-16.md) | Gas Abstraction Sponsorship Service | Standards Track | Interface | Final |
-| [OIP-17](OIPs/oip-17.md) | Adventure Hardfork | Meta | — | Review |
+| [OIP-17](OIPs/oip-17.md) | Adventure Hardfork | Meta | — | Draft |
 | [OIP-18](OIPs/oip-18.md) | ONEchain Network Parameters and Genesis | Informational | — | Final |
 | [OIP-19](OIPs/oip-19.md) | Deterministic Istanbul System Transactions | Standards Track | Core | Draft |
 | [OIP-21](OIPs/oip-21.md) | System Contract Upgrades at Fork Boundaries | Standards Track | Core | Draft |

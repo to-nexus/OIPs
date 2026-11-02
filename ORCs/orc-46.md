@@ -60,6 +60,8 @@ The inspected bridge mints to its own address and burns its own balance before m
 Those methods are not ERC-7802 selectors and do not emit its additional bridge events.
 An adapter that calls the legacy methods is a bridge component, not a conforming token: it MUST be explicitly authorized and enforce the same route and message checks, consumers MUST index the token address rather than adapter events, and a deployment MUST NOT claim the original token implements an interface exposed only by an adapter.
 The inspected token is not upgradeable, so conformance requires a redeployed token or a lockbox-style wrapper; each changes trust and address properties and requires a route-specific migration decision.
+Later bridge-contracts revisions create tokens as beacon proxies whose implementation an administrator of the creating factory can replace; that design could add the ERC-7802 selectors in place, but it gives that administrator upgrade authority over every such token.
+On ONEchain mainnet, the bridge's two registered token representations use the earlier non-upgradeable implementation and report no ERC-7802 support, as recorded in the [verification record](../assets/orc-46/verification.md).
 
 ## Rationale
 
@@ -84,7 +86,7 @@ No existing representation is renamed, migrated, or granted a new minter by this
 | Downscale an amount with a nonzero remainder | Follow the declared reject or accounted-remainder policy. |
 | Call ERC-7802 on an unmodified legacy deployment | Do not report supported-interface conformance. |
 
-These cases require token, adapter, bridge, and indexer testing; none was executed for this Draft.
+The legacy-deployment case was checked against the deployed ONEchain tokens in the verification record; the other cases require token, adapter, bridge, and indexer testing.
 
 ## Reference Implementation
 
@@ -96,7 +98,7 @@ Implementation checks and their scope are recorded in the separate [verification
 
 Before Review, choose the bridge route, authorization model, canonical asset-discovery format, conversion policy, and migration mechanism.
 Implement and verify the new selectors and bridge events with the actual bridge consumers.
-This Draft makes no deployment or backing claim and grants no bridge authority.
+This Draft deploys no token, makes no backing claim, and grants no bridge authority.
 
 ## Security Considerations
 

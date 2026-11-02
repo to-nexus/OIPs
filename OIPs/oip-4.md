@@ -3,7 +3,7 @@ oip: 4
 title: Istanbul Chains Without the Merge Transition
 description: Execution upgrades after Paris on Istanbul consensus chains that never transition to proof of stake.
 author: ONEchain Contributors
-status: Review
+status: Draft
 type: Standards Track
 category: Core
 created: 2026-10-28
@@ -176,7 +176,8 @@ Upgrade activation uses the presence of Istanbul consensus in place of post-merg
 The EVM treats a block with difficulty `1` as post-merge because its block context carries the `PREVRANDAO` value.
 
 Applying Istanbul validation and finalization on every import path, as required by [Header Validation](#header-validation), is a client conformance requirement rather than a consensus change.
-This proposal remains in Review until a merged implementing revision is referenced and its header verification, block import, and finalization paths have been verified against this requirement.
+This proposal is intended for Final registration under [OIP-1's retrospective path](oip-1.md#documenting-existing-deployed-behavior).
+That registration requires a merged implementing revision to be referenced and its header verification, block import, and finalization paths to be verified against this requirement.
 
 This specification records existing behavior and schedules no new fork.
 The reference source settings do not establish the activation history of deployed networks.

@@ -135,7 +135,8 @@ Implementation checks and their scope are recorded in the separate [verification
 
 ## Implementation and Activation
 
-Before Review, pin supported deployments, EntryPoint versions, service quote fields, asset behavior, and the upstream revision used for validation rules.
+This proposal is intended for Final registration under [OIP-1's retrospective path](../OIPs/oip-1.md#documenting-existing-deployed-behavior); requirements that the referenced implementations do not meet must be implemented or moved to a separate proposal before then.
+Before that registration, pin supported deployments, EntryPoint versions, service quote fields, asset behavior, and the upstream revision used for validation rules.
 Run actual `handleOps` scenarios for successful, reverted, and failed-collection operations, including validation-time permit restrictions and refund claims.
 The service's full admission policy and current deployment compatibility were not established.
 This Draft authorizes no deployment or token allowlist change.
