@@ -3,7 +3,7 @@ oip: 17
 title: Adventure Hardfork
 description: Included specifications, activation conditions, and compatibility boundaries of the Adventure hardfork.
 author: ONEchain Contributors
-status: Review
+status: Draft
 type: Meta
 created: 2026-10-28
 requires: 2, 3, 4, 5, 6, 7, 8, 9, 11
@@ -201,8 +201,8 @@ For any future activation or historical deployment record, maintainers must iden
 Node operators, validators, RPC providers, wallets, and receipt consumers must coordinate any activation on a network where Adventure is not already active.
 Historical network activation evidence, minimum compatible release identification, and the combined profile test results remain unverified in this proposal.
 
-This proposal remains in Review until its required OIP-4 dependency reaches Final.
-Final registration requires OIP-4 to identify and verify the implementing revision and reach Final; the dependency list above is otherwise resolved.
+This proposal is intended for Final registration under [OIP-1's retrospective path](oip-1.md#documenting-existing-deployed-behavior).
+That registration requires OIP-4 to identify and verify the implementing revision and reach Final; the dependency list above is otherwise resolved.
 
 ## Security Considerations
 

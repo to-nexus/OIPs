@@ -3,7 +3,7 @@ orc: 20
 title: Fungible Token Standard
 description: An ERC-20 extension with required metadata and interoperability rules for ONEchain token contracts.
 author: ONEchain Contributors
-status: Review
+status: Draft
 type: Standards Track
 created: 2026-10-29
 ---
@@ -212,13 +212,15 @@ Their legacy names are retained only to identify the source; no deployment or co
 
 ## Implementation and Activation
 
-ORC-20 is in Review and defines proposed contract and integration requirements.
+ORC-20 documents the token interface of the existing contracts cited in [Reference Implementation](#reference-implementation).
+It is intended for Final registration under [OIP-1's retrospective path](../OIPs/oip-1.md#documenting-existing-deployed-behavior).
 It requires no hardfork or protocol activation timestamp.
 Token issuers can assess existing contracts against the specification or implement it in newly deployed contracts.
 Wallets, indexers, and services must verify metadata, call results, and any optional extensions for each supported token address.
 
 The interface declaration was compiled with Solidity `0.8.35`; all nine function selectors, return types, mutability declarations, and both event encodings matched `IERC20Metadata`.
 Token runtime conformance, deployed contract behavior, and consumer interoperability remain unverified for this proposal.
+Final registration requires identifying the deployed token contracts and networks it documents, and recording existing tests or runtime checks for the required metadata, return values, and events.
 No token deployment or upgrade is performed by registering ORC-20.
 
 ## Security Considerations

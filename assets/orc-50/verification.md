@@ -1,6 +1,6 @@
-# Soulbound Token Draft Verification
+# ORC-50 Specification Verification
 
-This record supports the [Soulbound Token Standard Draft](../../ORCs/orc-draft-soulbound-tokens.md).
+This record supports [ORC-50](../../ORCs/orc-50.md).
 It records specification inspection on 2026-10-29 and does not establish implementation or deployment conformance.
 
 ## Upstream Specification Inspection

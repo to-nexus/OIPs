@@ -101,7 +101,8 @@ Implementation checks and their scope are recorded in the separate [verification
 ## Implementation and Activation
 
 This Draft activates no contract change.
-Before Review, select the supported token implementations, verify both overloads and contract-owner signatures, and record account initialization and fallback behavior.
+This proposal is intended for Final registration under [OIP-1's retrospective path](../OIPs/oip-1.md#documenting-existing-deployed-behavior); requirements that the referenced implementations do not meet must be implemented or moved to a separate proposal before then.
+Before that registration, select the supported token implementations, verify both overloads and contract-owner signatures, and record account initialization and fallback behavior.
 Pin the adopted upstream revisions and consumer versions; deployed compatibility remains unverified.
 
 ## Security Considerations

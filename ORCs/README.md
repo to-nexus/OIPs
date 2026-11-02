@@ -10,7 +10,7 @@ Start a proposal with the [ORC template](../templates/orc-template.md).
 
 | Number | Title | Type | Status |
 | --- | --- | --- | --- |
-| [ORC-20](orc-20.md) | Fungible Token Standard | Standards Track | Review |
+| [ORC-20](orc-20.md) | Fungible Token Standard | Standards Track | Draft |
 | [ORC-40](orc-40.md) | Modular Smart Account Interoperability | Standards Track | Draft |
 | [ORC-41](orc-41.md) | Session Permissions and Spending Policies | Standards Track | Draft |
 | [ORC-42](orc-42.md) | Signed Token Approvals | Standards Track | Draft |
@@ -21,9 +21,4 @@ Start a proposal with the [ORC template](../templates/orc-template.md).
 | [ORC-47](orc-47.md) | Tokenized Staking and Yield Vault Adapters | Standards Track | Draft |
 | [ORC-48](orc-48.md) | NFT Metadata and Marketplace Interoperability | Standards Track | Draft |
 | [ORC-49](orc-49.md) | Multi-Token Game Asset Interoperability | Standards Track | Draft |
-
-## Unnumbered Drafts
-
-| Proposal | Type | Status |
-| --- | --- | --- |
-| [Soulbound Token Standard](orc-draft-soulbound-tokens.md) | Standards Track | Draft |
+| [ORC-50](orc-50.md) | Soulbound Token Standard | Standards Track | Draft |
