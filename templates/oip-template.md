@@ -3,7 +3,6 @@ oip: TBD
 title: "<Short descriptive title>"
 description: "<One sentence describing the proposal.>"
 author: "<Name or team, optionally with a GitHub handle or email>"
-discussions-to: "<URL of a specific public discussion thread>"
 status: Draft
 type: Standards Track
 category: Core
@@ -18,7 +17,7 @@ Choose type: Standards Track, Meta, or Informational.
 For Standards Track, choose category: Core, Networking, or Interface.
 For application-level standards, use orc-template.md and the ORCs directory instead.
 For other types, remove category.
-Remove discussions-to if a Draft has no thread yet or if the proposal qualifies for retrospective Final registration under OIP-1.
+Optionally add discussions-to after author to link a specific public discussion thread, including a repository issue or pull request.
 Add requires after created only for actual OIP dependencies, as comma-separated numbers.
 Add last-call-deadline immediately after status only when entering Last Call.
 Add withdrawal-reason after requires (or created) only when entering Withdrawn.
@@ -49,17 +48,19 @@ Replace all placeholders and update the README index after number assignment.
 
 ## Test Cases
 
-<!-- Required for Standards Track before Final and for consensus proposals by Review; optional otherwise. -->
+<!-- Required for consensus changes before Final; optional otherwise. Review may identify unfinished verification work. -->
 <!-- Include inputs and expected results, or reproducible tests pinned to a commit. Cover activation boundaries where relevant. -->
+<!-- Other Standards Track proposals still need verification evidence appropriate to their behavior and risks under OIP-1. -->
 
 ## Reference Implementation
 
 <!-- Optional: link an implementation at a specific commit or release. Remove this section if not applicable. -->
+<!-- Core proposals must still identify a conforming implementation before Final under OIP-1, even if this section is omitted. -->
 
 ## Implementation and Activation
 
 <!-- Required for coordinated deployment, process adoption, or retrospective Final registration; otherwise remove this section. -->
-<!-- Record affected networks/components, implementation and test evidence, coordination, and activation conditions. -->
+<!-- Record affected networks/components, implementation and applicable verification evidence, coordination, and activation conditions. -->
 <!-- Distinguish plans from confirmed deployment; mark unknown details as undecided and link applicable decisions. -->
 
 ## Security Considerations

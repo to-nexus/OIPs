@@ -3,7 +3,6 @@ orc: TBD
 title: "<Short descriptive title>"
 description: "<One sentence describing the proposal.>"
 author: "<Name or team, optionally with a GitHub handle or email>"
-discussions-to: "<URL of a specific public discussion thread>"
 status: Draft
 type: Standards Track
 created: "<YYYY-MM-DD>"
@@ -14,7 +13,7 @@ Read ../OIPs/oip-1.md before preparing a proposal.
 Copy this file to ORCs/orc-draft-<short-title>.md and remove instructional comments.
 An editor assigns an unused number from the shared OIP/ORC sequence before merge; do not choose one yourself.
 ORCs use Standards Track and omit category. Protocol changes belong in OIPs.
-Remove discussions-to if a Draft has no thread yet or if the proposal qualifies for retrospective Final registration under OIP-1.
+Optionally add discussions-to after author to link a specific public discussion thread, including a repository issue or pull request.
 Add requires after created only for ORC dependencies, as comma-separated numbers.
 Identify and link OIP dependencies in the Specification instead.
 Add last-call-deadline immediately after status only when entering Last Call.
@@ -46,7 +45,9 @@ Replace all placeholders and update the ORCs/README.md index after number assign
 
 ## Test Cases
 
-<!-- Required before Final. Include inputs and expected results, or reproducible tests pinned to a commit. -->
+<!-- Optional section. Before Final, provide verification evidence appropriate to the standard's behavior and risks under OIP-1. -->
+<!-- Evidence may include implementation reviews, conformance examples, test vectors, automated tests, or recorded runtime checks. -->
+<!-- If using tests, include inputs and expected results, or reproducible tests pinned to a commit. -->
 
 ## Reference Implementation
 
@@ -55,7 +56,7 @@ Replace all placeholders and update the ORCs/README.md index after number assign
 ## Implementation and Activation
 
 <!-- Required for coordinated deployment or retrospective Final registration; otherwise remove this section. -->
-<!-- Record affected applications, implementation and test evidence, coordination, and deployment conditions. -->
+<!-- Record affected applications, implementation and applicable verification evidence, coordination, and deployment conditions. -->
 <!-- Distinguish plans from confirmed deployment; mark unknown details as undecided and link applicable decisions. -->
 
 ## Security Considerations
