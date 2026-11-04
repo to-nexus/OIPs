@@ -9,7 +9,7 @@ Publishing an OIP does not approve its technical design or activate a change on 
 
 ## Proposals
 
-Proposal numbers are shared with ORCs; numbers 20 and 40 through 50 belong to the [ORCs](ORCs/README.md#proposals).
+OIPs and [ORCs](ORCs/README.md#proposals) share a single proposal number sequence.
 
 | Number | Title | Type | Category | Status |
 | --- | --- | --- | --- | --- |
