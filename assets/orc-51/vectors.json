@@ -1,0 +1,56 @@
+{
+  "known_answers": "2 passed",
+  "jcs_scope": "strings, objects, arrays only",
+  "fingerprints": [
+    {
+      "label": "ASCII",
+      "input": {
+        "name": "Ada",
+        "description": "A guide."
+      },
+      "canonical": "{\"description\":\"A guide.\",\"name\":\"Ada\"}",
+      "utf8_hex": "7b226465736372697074696f6e223a22412067756964652e222c226e616d65223a22416461227d",
+      "keccak256": "0xde15b1a45d9e298de5c7dac36fb3fff5698258f1cb7a3ee90b4164aaa4f24701"
+    },
+    {
+      "label": "Korean UTF-8",
+      "input": {
+        "name": "하늘",
+        "description": "함께 이야기해요."
+      },
+      "canonical": "{\"description\":\"함께 이야기해요.\",\"name\":\"하늘\"}",
+      "utf8_hex": "7b226465736372697074696f6e223a22ed95a8eabb9820ec9db4ec95bceab8b0ed95b4ec9a942e222c226e616d65223a22ed9598eb8a98227d",
+      "keccak256": "0xe41d7242a60e99f0efe9b2bdb75eb9c6885ffd0c56eb5e33fbbe0c5e07bab1a0"
+    },
+    {
+      "label": "Escapes and ordering",
+      "input": {
+        "text": "Quote: \" Backslash: \\ Newline:\n",
+        "aliases": [
+          "Guide",
+          {
+            "label": "Companion"
+          }
+        ]
+      },
+      "canonical": "{\"aliases\":[\"Guide\",{\"label\":\"Companion\"}],\"text\":\"Quote: \\\" Backslash: \\\\ Newline:\\n\"}",
+      "utf8_hex": "7b22616c6961736573223a5b224775696465222c7b226c6162656c223a22436f6d70616e696f6e227d5d2c2274657874223a2251756f74653a205c22204261636b736c6173683a205c5c204e65776c696e653a5c6e227d",
+      "keccak256": "0x0ea0cae29925960577d1c23c614d5f523d6525e14c10e53d6fbfc12c0dd8d0d1"
+    }
+  ],
+  "type_string": "IssueCharacter(string characterId,address creator,bytes32 initialFingerprint,uint256 deadline)",
+  "typehash": "0x3caa5fd2d7e3eff424e2c682c9590e6dfd02d2b6940bf5565609d9bb4928927a",
+  "selectors": {
+    "admin()": "0xf851a440",
+    "issuer()": "0x1d143848",
+    "baseURI()": "0x6c0360eb",
+    "character(uint256)": "0x468f25b0",
+    "tokenIdOf(string)": "0xa398d819",
+    "issue(string,address,bytes32,uint256,bytes)": "0xaa82cdbe",
+    "setIssuer(address)": "0x55cc4e57",
+    "setBaseURI(string)": "0x55f804b3",
+    "notifyMetadataUpdate(uint256,uint256)": "0x512b2bff",
+    "contractURI()": "0xe8a3d485"
+  },
+  "interface_id": "0x7f6f796a"
+}
