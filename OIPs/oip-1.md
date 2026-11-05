@@ -106,10 +106,11 @@ Proposal numbers are independent of issue and pull request numbers.
 Once assigned, a number MUST NOT be reused or reassigned to an unrelated proposal, including when its submission closes without merging.
 Published proposals MUST retain their number and file path; withdrawn and superseded documents remain available as historical records.
 
-A draft MAY use its submission pull request for initial discussion.
-Before entering Review, it MUST identify a public, durable discussion thread in `discussions-to`, normally a [repository issue](https://github.com/to-nexus/OIPs/issues).
+Proposal discussion and review MAY take place in public pull requests at every stage.
+A separate discussion thread and the `discussions-to` field are optional at every stage.
+When provided, `discussions-to` MUST identify a specific, public, durable discussion thread, such as a repository issue or pull request.
 Discussion references MUST point to a specific thread rather than a repository, issue list, or chat homepage.
-Existing deployed behavior MAY instead be registered directly as Final under [Documenting Existing Deployed Behavior](#documenting-existing-deployed-behavior).
+Proposals documenting existing deployed behavior MAY instead be registered or advanced directly to Final under [Documenting Existing Deployed Behavior](#documenting-existing-deployed-behavior).
 
 ### Proposal Lifecycle
 
@@ -130,7 +131,7 @@ The diagram shows the primary path; the table and rules below also govern inacti
 | Status | Meaning and entry requirement |
 | --- | --- |
 | Draft | A published work in progress that is suitable for discussion but may have unresolved design questions. |
-| Review | The author considers the specification complete enough for technical review and has provided a public discussion thread. |
+| Review | The author considers the specification complete enough for technical review and requests review through a pull request. |
 | Last Call | Review has produced a stable specification; an editor announces a final public review period and records its deadline. |
 | Final | A stable specification that meets the requirements below after the usual review period or retrospective registration of existing deployed behavior. Deployment facts are recorded separately. |
 | Living | A Meta or Informational document adopted after review for continued maintenance rather than a fixed final specification. |
@@ -140,12 +141,15 @@ The diagram shows the primary path; the table and rules below also govern inacti
 Authors request status changes through pull requests, and editors verify their evidence before merging.
 The corresponding README row MUST change in the same pull request.
 The status transition and its reasons MUST remain visible in the pull request history.
+Material feedback and review decisions MUST be recorded in the relevant pull requests, including links to any separate discussions used in the review.
 
 #### Review and Last Call
 
-A Review proposal MUST provide a complete Specification and meaningful compatibility and security analysis.
+A Review proposal MUST provide a Specification detailed enough for technical review and meaningful compatibility and security analysis.
+Implementation and verification work MAY remain incomplete at this stage; known gaps MUST be identified.
 An editor MAY move it to Last Call when the author requests it and the review record addresses material objections.
-The Last Call announcement MUST link the proposal and discussion, state whether the intended destination is Final or Living, and allow at least 14 days for public review.
+The Last Call announcement MUST link the proposal and identify a public pull request or discussion thread for review comments.
+It MUST state whether the intended destination is Final or Living and allow at least 14 days for public review.
 The `last-call-deadline` date MUST be at least 14 calendar days after the announcement; the window ends at 23:59:59 UTC on that date.
 
 Changes to requirements or behavior during Last Call MUST return the proposal to Review.
@@ -160,37 +164,42 @@ That record MUST summarize technical support, material objections and their reso
 Unresolved objections about correctness, compatibility, or security MUST be addressed before advancement; silence alone is not evidence of agreement.
 Status-only transitions SHOULD be separate from specification changes.
 
-A Standards Track OIP MUST include implementation and test evidence before becoming Final.
+A Standards Track proposal MUST provide verification evidence appropriate to its specified behavior, interoperability requirements, and security risks before becoming Final.
+Core OIPs MUST identify a conforming implementation before becoming Final.
 Consensus changes MUST include reproducible tests covering activation boundaries, valid and invalid cases, and relevant compatibility behavior, together with review by affected implementation maintainers.
+For other Standards Track proposals, including Networking, Interface, and ORCs, evidence MAY consist of implementation reviews, conformance examples, test vectors, automated tests, or recorded runtime checks.
+Authors and reviewers MUST record why the evidence is sufficient and state its verification limits.
 Required dependencies MUST be Final or, for applicable process dependencies, Living before a dependent proposal becomes Final or Living.
 A Meta proposal MUST record agreement from the maintainers or participants responsible for the affected process before becoming Final or Living.
 Informational proposals require review for accuracy and clarity; their status does not make their advice mandatory.
 
 A Final OIP MUST NOT change its requirements or behavior in place.
 Corrections and clarifications that preserve meaning MAY be merged; a behavioral revision requires a new OIP that identifies the prior proposal and explains the change.
-A Living OIP MAY be maintained in place, but substantive changes MUST receive at least 14 days of public review and a recorded decision in the change pull request.
+A Living OIP MAY be maintained in place, but substantive changes MUST receive review and a recorded decision in the change pull request.
+Changes to decision authority or mandatory adoption procedures, including status transition requirements and review periods, MUST receive at least 14 days of public review.
+Other changes MAY follow ordinary pull request review without a fixed minimum review period.
 Its status remains Living during that review.
 
-As the initial process document, OIP-1 starts in Living without a prior Last Call or a `discussions-to` thread.
+As the initial process document, OIP-1 starts in Living without a prior Last Call.
 Subsequent proposals follow the usual lifecycle or the retrospective registration path below.
 Later substantive revisions to OIP-1 follow the Living-document review rules.
 
 #### Documenting Existing Deployed Behavior
 
-An OIP that documents behavior already implemented and in use on a live network, service, or application MAY be initially registered as Final.
+An OIP that documents behavior already implemented and in use on a live network, service, or application MAY be initially registered as Final or moved directly from Draft or Review to Final under this path.
 This retrospective registration MUST describe existing behavior without introducing new protocol rules, interface requirements, or activation decisions.
 
 The document MUST identify the applicable networks or components, the behavior being documented, and the implementation revision or release used as its reference.
-It MUST provide evidence of agreement between the specification and implementation, using existing tests, reproducible vectors, or recorded runtime checks, with their verification limits stated.
+It MUST provide evidence of agreement between the specification and implementation, using implementation reviews, existing tests, reproducible vectors, or recorded runtime checks, with their verification limits stated.
 The Implementation and Activation section MUST distinguish confirmed operational facts from source defaults and unverified deployment details.
 The first activation block, date, or release MAY remain unverified when historical evidence is unavailable; source defaults MUST NOT be presented as proof of historical activation.
 
 The author and editor MUST confirm the document's accuracy against the existing behavior and resolve material specification ambiguities or implementation mismatches before registration.
-The submission pull request MUST identify this registration path and summarize its supporting evidence and remaining verification limits.
+The pull request registering the proposal or changing its status MUST identify this retrospective path and summarize its supporting evidence and remaining verification limits.
 
-Retrospective registration does not require historical adoption approvals or review records, a separate discussion thread, the Review and Last Call stages, or a `discussions-to` field.
-An existing discussion thread SHOULD be linked when available.
-Requirements for a complete specification, implementation and test evidence, and finalized dependencies still apply.
+Retrospective registration does not require historical adoption approvals or review records and MAY bypass the Review and Last Call stages.
+Requirements for a complete specification, the applicable verification evidence under [Final and Living](#final-and-living), and finalized dependencies still apply.
+Existing evidence MAY satisfy these requirements without creating a new test suite.
 Registration does not itself approve a new deployment or establish that every implementation path has been tested.
 
 Proposed behavior changes MUST follow the usual lifecycle in a separate proposal.
@@ -200,7 +209,7 @@ Once registered, the specification follows the same maintenance rules as every o
 
 An editor MAY mark a Draft, Review, or Last Call proposal Stagnant after six months without substantive progress, with notice to the author in a public issue or pull request.
 An author MAY resume a Stagnant proposal as Draft or Review through a pull request with a progress update.
-A resumed proposal MUST pass a new Last Call before Final or Living.
+Under the usual lifecycle, a resumed proposal MUST pass a new Last Call before Final or Living.
 An author MAY return a Review proposal to Draft when further design work is needed.
 
 An author MAY withdraw a Draft, Review, Last Call, or Stagnant proposal by providing a `withdrawal-reason`.
@@ -224,7 +233,7 @@ Fields MUST appear in the following order when applicable.
 | `title` | A concise descriptive title without the OIP number. |
 | `description` | One short sentence summarizing the proposal. |
 | `author` | Names or team names; GitHub handles or email addresses may be included. The submission must identify a responsive GitHub participant responsible for updates. |
-| `discussions-to` | A specific public discussion URL; required from Review onward except for the initial publication of OIP-1 and retrospective Final registration under [Documenting Existing Deployed Behavior](#documenting-existing-deployed-behavior). Retained on later inactivity or withdrawal. |
+| `discussions-to` | Optional at every stage. A specific public issue, pull request, or other durable discussion thread. Existing references SHOULD be retained for traceability. |
 | `status` | One of the statuses defined above. |
 | `last-call-deadline` | Required only in Last Call, as a `YYYY-MM-DD` date. |
 | `type` | Standards Track, Meta, or Informational. |
@@ -249,7 +258,7 @@ The following sections MUST appear in order; conditionally required and optional
 | Specification | Required. Precise behavior, requirements, and assumptions sufficient for independent implementations or process participants. |
 | Rationale | Required. Reasons for the design, alternatives, and significant objections. |
 | Backwards Compatibility | Required. Affected existing behavior, migration needs, and interaction with known planned changes, or an explicit explanation of why none applies. |
-| Test Cases | Required for Standards Track before Final and for consensus proposals by Review. Include inputs, expected results, or reproducible test references. Optional for other types. |
+| Test Cases | Required for consensus changes before Final; optional otherwise. Include inputs, expected results, or reproducible test references. Omitting this section does not waive the verification evidence required under [Final and Living](#final-and-living). |
 | Reference Implementation | Optional. Implementation links or examples that help explain the specification. |
 | Implementation and Activation | Required for changes needing coordinated deployment or process adoption, and for retrospective Final registration. Record applicable plans, open decisions, existing behavior, and supporting evidence. |
 | Security Considerations | Required. Threats, trust assumptions, failure modes, mitigations, and unresolved risks. |
@@ -294,10 +303,14 @@ A shared number sequence prevents unrelated protocol and application proposals f
 
 Final describes specification stability; deployment evidence is recorded separately so readers can distinguish an accepted design from behavior available on a particular network.
 A 14-day Last Call provides a predictable minimum review period, while Living supports ongoing maintenance of process documents.
+Review focuses on a specification's readiness for technical discussion; implementation and verification work can continue before Final.
+Final verification requirements reflect the proposal's behavior and risks, with reproducible tests required for consensus changes.
+Living-document review periods focus on changes to decision authority and mandatory adoption procedures.
 GitHub issues and pull requests provide an initial discussion and review venue without requiring a separate forum or publishing system.
+Separate discussion threads are optional so that proposal review and decisions can remain in a pull request.
 The proposal does not import Ethereum's core developer procedures or BNB Chain's governance rules as ONEchain policy.
 
-Retrospective registration lets the repository document stable behavior that was already in use before its specification was submitted.
+Retrospective registration lets new and existing proposals document stable behavior already in use.
 Implementation evidence and a check of the document's accuracy support that registration without requiring historical approval records to be reconstructed.
 
 ## Backwards Compatibility

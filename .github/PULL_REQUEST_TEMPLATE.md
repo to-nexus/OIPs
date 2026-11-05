@@ -4,9 +4,11 @@
 
 ## Discussion and Review
 
-<!-- Link the discussion thread, summarize material feedback, and identify the responsible author or maintainer. -->
+<!-- Summarize material feedback and review decisions, and identify the responsible author or maintainer. -->
+<!-- Link any separate discussion used in the review; a separate thread and discussions-to are optional at every stage. -->
 <!-- For a status change, give the current and requested statuses and the evidence required by OIP-1. -->
-<!-- For retrospective Final registration, identify the existing behavior, supporting evidence, accuracy checks, and remaining verification limits. A separate discussion thread or historical adoption approval is not required. -->
+<!-- For retrospective Final registration or a direct Draft/Review-to-Final transition, identify the existing behavior, supporting evidence, accuracy checks, and remaining verification limits. -->
+<!-- Historical adoption approvals or review records are not required for this path. -->
 
 ## Checklist
 
