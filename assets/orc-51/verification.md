@@ -1,6 +1,6 @@
 # AI Character Registry Specification Verification
 
-This record supports the [Draft proposal](../../ORCs/orc-draft-ai-character-registry.md).
+This record supports the [Draft proposal](../../ORCs/orc-51.md).
 It records specification inspection and local arithmetic on 2026-11-03. It does not establish implementation or deployment conformance.
 
 ## Repository Sources

@@ -1,5 +1,5 @@
 ---
-orc: TBD
+orc: 51
 title: AI Character Registry
 description: An ERC-721 registry that gives each AI character one permanent identity card, with fixed character and creator records and details served by the issuing platform.
 author: Issac (@issacley-nexus)
@@ -10,7 +10,7 @@ created: 2026-11-03
 requires: 48
 ---
 
-# ORC-TBD: AI Character Registry
+# ORC-51: AI Character Registry
 
 ## Abstract
 
@@ -138,7 +138,7 @@ This adds a new collection without changing existing contracts. Characters creat
 
 ## Test Cases
 
-Each canonical form below is hashed as UTF-8 without a trailing newline. Inputs, byte encodings, selector arithmetic, and verification limits are in the [verification record](../assets/orc-draft-ai-character-registry/verification.md).
+Each canonical form below is hashed as UTF-8 without a trailing newline. Inputs, byte encodings, selector arithmetic, and verification limits are in the [verification record](../assets/orc-51/verification.md).
 
 `keccak256("IssueCharacter(string characterId,address creator,bytes32 initialFingerprint,uint256 deadline)")` MUST equal `0x3caa5fd2d7e3eff424e2c682c9590e6dfd02d2b6940bf5565609d9bb4928927a`.
 
