@@ -1,0 +1,27 @@
+name: Documentation
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.13'
+      - name: Install document parsers
+        run: python -m pip install -r scripts/requirements.txt
+      - name: Test the validator
+        run: python -B -m unittest discover -s scripts -p 'test_*.py' -v
+      - name: Validate documents
+        run: python -B scripts/check_docs.py

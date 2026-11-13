@@ -127,6 +127,8 @@ Only arithmetic examples were checked for this Draft; the reference repository's
 
 ## Reference Implementation
 
+References to `to-nexus/one-account-sdk` and `to-nexus/one-paymaster-contracts` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 - [TokenPaymaster](https://github.com/to-nexus/one-paymaster-contracts/blob/18b7fbd60f4dfd7202ed7d5459fb2b20469a3676/src/TokenPaymaster.sol), [v0.8 variant](https://github.com/to-nexus/one-paymaster-contracts/blob/18b7fbd60f4dfd7202ed7d5459fb2b20469a3676/src/TokenPaymasterV08.sol), and [backend signature binding](https://github.com/to-nexus/one-paymaster-contracts/blob/18b7fbd60f4dfd7202ed7d5459fb2b20469a3676/src/SignedPaymaster.sol).
 - [Existing EntryPoint integration tests](https://github.com/to-nexus/one-paymaster-contracts/blob/18b7fbd60f4dfd7202ed7d5459fb2b20469a3676/test/TokenPaymasterIntegration.t.sol).
 - [SDK permit and approval integration](https://github.com/to-nexus/one-account-sdk/blob/21b0565b21eb7d7ee2496049b981c4bbfbdb29c0/src/client/tokenPaymaster.ts).

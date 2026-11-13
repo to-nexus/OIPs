@@ -3,6 +3,8 @@
 This record supports [OIP-16](../../OIPs/oip-16.md).
 Checks were performed on 2026-10-28 using isolated source snapshots.
 
+References to `to-nexus/gasabs` are [internal verification sources](../../README.md#verification-sources) and require access to the cited repositories.
+
 ## Source Baselines
 
 | Component | Revision and scope |

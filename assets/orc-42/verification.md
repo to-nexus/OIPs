@@ -4,6 +4,8 @@ This record describes source inspection performed for [ORC-42](../../ORCs/orc-42
 It is supporting evidence, not a definition of requirements or proof of deployment.
 The sources were inspected on 2026-10-29.
 
+References to `to-nexus/one-account-sdk` and `to-nexus/one-paymaster-contracts` are [internal verification sources](../../README.md#verification-sources) and require access to the cited repositories.
+
 ## Source Inspection
 
 | Source | Inspected behavior |

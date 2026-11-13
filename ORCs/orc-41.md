@@ -119,6 +119,8 @@ These are required module and wallet tests, not new runtime results.
 
 ## Reference Implementation
 
+References to `to-nexus/cross-account-contracts` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 - [SessionKeyValidator](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/modules/SessionKeyValidator.sol) and [SessionKeyStorage](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/modules/SessionKeyStorage.sol).
 - [SessionKeyModule](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/modules/SessionKeyModule.sol).
 - [SpendingLimitHook](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/modules/SpendingLimitHook.sol) and [SpendingLimitStorage](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/modules/SpendingLimitStorage.sol).

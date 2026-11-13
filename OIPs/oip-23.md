@@ -28,16 +28,18 @@ Header encoding and hash filtering must preserve historical block identities.
 
 Use the PoSA activation and council rules of [OIP-22](oip-22.md), the underlying quorum rules of [OIP-6](oip-6.md), and the message protocol of [OIP-7](oip-7.md).
 The base header encoding is defined by [OIP-5](oip-5.md).
-From PoSA activation, this proposal replaces the six-element rule and the `committedSeals` and `randomReveal` field definitions of OIP-5, and the individual-seal quorum certificate of OIP-6.
+From PoSA activation, this proposal extends the base extra-data layout and replaces the `committedSeals` and `randomReveal` field definitions of OIP-5, and the individual-seal quorum certificate of OIP-6.
 Blocks before PoSA activation remain governed by those proposals.
 BLS public keys are 48-byte compressed values; signatures are 96-byte compressed values.
 The PoSA extra-data extends the six base RLP elements with `signersBitset` and `signers` in that order.
 The bitset is an RLP list of unsigned 64-bit words; bit `i` is the low-to-high bit at `i mod 64` of word `floor(i / 64)`.
 `signers` is the ordered list of validator public keys at an epoch boundary.
-An encoder emits both trailing elements when either is nonempty and omits both otherwise; when only `signers` is nonempty, `signersBitset` is encoded as the empty list `0xc0`.
-A sealed PoSA header therefore has eight elements, and a seven-element list is invalid.
+The reference encoder emits both trailing elements when either field is present (non-`nil`), including a present but empty list, and omits both when both are absent.
+When only `signers` is present, `signersBitset` is encoded as the empty list `0xc0`.
+A sealed PoSA header produced by this encoder has eight elements.
+The decoder also accepts a seven-element list, interpreting the omitted `signers` as an empty list; validity then depends on the bitset, certificate, and epoch-list checks below, not solely on the element count.
 In a PoSA header, `randomReveal` is the 96-byte BLS reveal specified in [OIP-24](oip-24.md).
-Headers before PoSA activation MUST have exactly the six elements of OIP-5; the reference decoder's acceptance of longer lists is recorded in the [OIP-5 verification record](../assets/oip-5/verification.md).
+Before PoSA activation, the base ECDSA rules and optional-field compatibility of OIP-5 apply; decoding the trailing fields does not activate BLS verification.
 
 ### Commit Verification
 
@@ -84,7 +86,7 @@ The BLS reveal derivation is specified separately in OIP-24.
 | Duplicate signer during aggregation | Reject. |
 | Unknown bit or extra noncanonical word | Reject the bitset. |
 | Correct signature from too few selected validators | Reject for insufficient quorum. |
-| Sealed PoSA header with seven extra-data elements | Reject. |
+| Seven-element extra-data with omitted signer keys | Decode with an empty signer-key list, then apply the bitset, certificate, and epoch-list checks. |
 | Original-prefix historical header | Exclude signer keys from the filtered hash. |
 | BLS inner seal with an invalid outer message signature | Reject the consensus message. |
 

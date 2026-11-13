@@ -28,6 +28,7 @@ A native staking balance with custom router calls does not supply those standard
 Conforming vaults MUST implement ERC-4626's asset/share interface, conversions, previews, limits, events, and rounding requirements by reference.
 The underlying asset MUST be an ERC-20 token, and the share token MUST satisfy [ORC-20](orc-20.md), including explicit and stable display decimals.
 The underlying asset MUST be a token contract; native ONE requires a separately specified wrapped-asset or adapter path.
+[ORC-52](orc-52.md) proposes a separate native profile with dedicated deposit methods and explicit changes to this ERC-20 interface.
 The vault issuer MUST publish a vault profile that identifies the vault, asset, chain, implementation, and administrative authority and contains the disclosures below; its location and format remain a Review decision.
 Share decimals and asset decimals may differ and MUST NOT be assumed equal; vaults SHOULD use share decimals equal to asset decimals, as ERC-4626 recommends.
 
@@ -83,6 +84,8 @@ A new wrapper or adapter changes custody, authority, and addresses and requires 
 Only the arithmetic fixture was checked; no vault implementation or staking integration was exercised.
 
 ## Reference Implementation
+
+References to `to-nexus/cross-contracts` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
 
 [DelegationPool](https://github.com/to-nexus/cross-contracts/blob/3905c3a02fd4825739f2cc61dc8c9a11a3670fc2/src/DelegationPool.sol) is inspected background for native staking and unbonding, not a conforming implementation of this Draft.
 No wrapped asset, share contract, or ERC-4626/7540 adapter was selected.

@@ -7,6 +7,30 @@ See [OIP-1: OIP Purpose and Guidelines](OIPs/oip-1.md) for proposal registration
 Application-level standards are maintained separately in [ORCs](ORCs/README.md).
 Publishing an OIP does not approve its technical design or activate a change on ONEchain.
 
+## Verification Sources
+
+Verification records identify the source revisions and limits of each check.
+References marked as internal verification sources require permission to the cited implementation repository.
+These citations preserve the evidence used for internal verification; publishing this repository does not make those source snapshots publicly accessible or the checks independently reproducible.
+
+## Document Validation
+
+The [documentation workflow](.github/workflows/docs.yml) runs on pull requests, pushes, and manual dispatches.
+Run the same checks locally with Python 3.10 or later:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r scripts/requirements.txt
+.venv/bin/python -B -m unittest discover -s scripts -p 'test_*.py' -v
+.venv/bin/python -B scripts/check_docs.py
+```
+
+The [validator](scripts/check_docs.py) checks proposal metadata, shared numbering, required section presence and order, dependency existence and cycles, dependency statuses, and index rows against [OIP-1](OIPs/oip-1.md).
+It also checks relative Markdown links, heading anchors, and labels for known internal implementation sources in tracked and non-ignored new documents.
+Unnumbered submissions must receive their assigned number and index entry before this merge check passes; templates are excluded from proposal metadata checks.
+External URLs are not fetched, and the known internal repository list in the validator must be updated when source visibility changes.
+Raw HTML links and anchors, technical correctness, review periods, and runtime conformance evidence require separate review.
+
 ## Proposals
 
 OIPs and [ORCs](ORCs/README.md#proposals) share a single proposal number sequence.
