@@ -23,3 +23,4 @@ Start a proposal with the [ORC template](../templates/orc-template.md).
 | [ORC-49](orc-49.md) | Multi-Token Game Asset Interoperability | Standards Track | Draft |
 | [ORC-50](orc-50.md) | Soulbound Token Standard | Standards Track | Draft |
 | [ORC-51](orc-51.md) | AI Character Registry | Standards Track | Draft |
+| [ORC-52](orc-52.md) | Native Asset Vaults | Standards Track | Draft |
