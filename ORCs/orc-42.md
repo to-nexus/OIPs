@@ -91,6 +91,8 @@ These are required verification cases, not a report of passing contract tests.
 
 ## Reference Implementation
 
+References to `to-nexus/one-account-sdk` and `to-nexus/one-paymaster-contracts` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 - [Bridge token interface](https://github.com/to-nexus/bridge-contracts/blob/b6be3278ae793ce448a29bec1a9bff005438792b/src/token/ICrossMintableERC20.sol) and [implementation](https://github.com/to-nexus/bridge-contracts/blob/b6be3278ae793ce448a29bec1a9bff005438792b/src/token/CrossMintableERC20V2.sol) expose the existing ERC-2612 path.
 - [TokenPaymaster](https://github.com/to-nexus/one-paymaster-contracts/blob/18b7fbd60f4dfd7202ed7d5459fb2b20469a3676/src/TokenPaymaster.sol) calls the byte-signature permit in pre-operation payment mode.
 - [SDK authorization handling](https://github.com/to-nexus/one-account-sdk/blob/21b0565b21eb7d7ee2496049b981c4bbfbdb29c0/src/client/tokenPaymaster.ts) validates request fields, adds rounded-up 1% approval headroom, and prefixes the validator address.

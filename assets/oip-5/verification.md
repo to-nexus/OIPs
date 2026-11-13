@@ -29,11 +29,14 @@ The header vector in the proposal was computed with the reference client's extra
 The program produced the unsealed and sealed extra-data, `blockHash`, `sealHash(H, 2)`, and the plain `keccak256(RLP(H))` shown in the proposal.
 Because the vector comes from the reference code, it is not an independent implementation check.
 
-## Known Implementation Difference
+## Extra-Data Extension Compatibility
 
-The proposal treats an extra-data list with other than six elements as invalid.
-At the reference revision, the extra-data decoder also accepts seven- or eight-element lists for blocks covered by this proposal.
-The trailing elements are excluded from the block hash and are not validated for those blocks.
+Source inspection on 2026-11-13 rechecked the decoder, encoder, and hash filtering at the same reference revision.
+The six base fields are followed by optional `signersBitset` and `signers` fields, so the decoder accepts typed six-, seven-, and eight-element lists.
+The encoder emits six elements when both optional fields are absent and eight when either is present, including a present but empty list.
+Before PoSA activation, the trailing fields do not participate in consensus validation and are excluded from the original-prefix filtered hashes.
+From PoSA activation, [OIP-23](../../OIPs/oip-23.md) defines the BLS validation rules; [OIP-35](../../OIPs/oip-35.md) defines digest version 2, which retains signer keys in the filtered hashes.
+This is a source-inspection clarification of fork-specific behavior, not a new test run or a change to historical acceptance rules.
 
 ## Verification Limits
 

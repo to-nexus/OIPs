@@ -4,6 +4,8 @@ This record describes source inspection performed for [ORC-41](../../ORCs/orc-41
 It is supporting evidence, not a definition of requirements or proof of deployment.
 The sources were inspected on 2026-10-29.
 
+References to `to-nexus/cross-account-contracts` are [internal verification sources](../../README.md#verification-sources) and require access to the cited repositories.
+
 ## Source Inspection
 
 | Source | Inspected behavior |

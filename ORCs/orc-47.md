@@ -85,6 +85,8 @@ Only the arithmetic fixture was checked; no vault implementation or staking inte
 
 ## Reference Implementation
 
+References to `to-nexus/cross-contracts` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 [DelegationPool](https://github.com/to-nexus/cross-contracts/blob/3905c3a02fd4825739f2cc61dc8c9a11a3670fc2/src/DelegationPool.sol) is inspected background for native staking and unbonding, not a conforming implementation of this Draft.
 No wrapped asset, share contract, or ERC-4626/7540 adapter was selected.
 Implementation checks and their scope are recorded in the separate [verification record](../assets/orc-47/verification.md).

@@ -4,6 +4,8 @@ This record describes source inspection performed against [go-cross revision 4c0
 It is supporting evidence for [OIP-23](../../OIPs/oip-23.md), not a definition of protocol requirements or proof of network activation.
 The source was inspected on 2026-10-29.
 
+References to `to-nexus/cross-contracts` are [internal verification sources](../../README.md#verification-sources) and require access to the cited repositories.
+
 ## Source Inspection
 
 | Source | Inspected behavior |
@@ -18,6 +20,14 @@ The source was inspected on 2026-10-29.
 | Source | Inspected behavior |
 | --- | --- |
 | [StakeHub.sol at 5cbc608][stakehub-sol-5cbc608] | Signature check on key registration and key update. |
+
+## Extra-Data Extension Compatibility
+
+Source inspection on 2026-11-13 rechecked the optional trailing fields in [core/types/istanbul.go][core-types-istanbul-go] at the same reference revision.
+The encoder appends both fields when either is non-`nil`, including a present but empty list.
+The decoder accepts a seven-element list with omitted signer keys; decoding alone does not establish header validity.
+The seal verifier applies the active PoSA bitset, quorum, aggregate-signature, and epoch-list rules rather than rejecting solely on that element count.
+No runtime tests were run for this clarification.
 
 ## Verification Limits
 

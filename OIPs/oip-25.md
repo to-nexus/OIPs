@@ -95,6 +95,8 @@ These cases define verification work; they are not a report of passing runtime t
 
 ## Reference Implementation
 
+References to `to-nexus/cross-contracts` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 Reference client: [go-cross at revision 4c0838f](https://github.com/to-nexus/go-cross/commit/4c0838f828f3a6300a1bd09fc70fec474a07a156).
 
 - [Execution beneficiary and fee credits](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/core/state_transition.go).

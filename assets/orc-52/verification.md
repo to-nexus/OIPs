@@ -3,6 +3,8 @@
 This record supports [ORC-52: Native Asset Vaults](../../ORCs/orc-52.md).
 It records source inspection on 2026-11-04, not test execution or deployment verification.
 
+References to `to-nexus/stake-one-contracts` are [internal verification sources](../../README.md#verification-sources) and require access to the cited repositories.
+
 ## Sources
 
 The inspected checkout was `stake-one-contracts` at `fce3934dc8d980aac5eb1ecca094cfd3985f0f69`.

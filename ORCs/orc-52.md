@@ -142,6 +142,8 @@ ORC-47's rounding fixture remains applicable, with assets denominated in wei and
 
 ## Reference Implementation
 
+References to `to-nexus/stake-one-contracts` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 [NativeVault at fce3934](https://github.com/to-nexus/stake-one-contracts/blob/fce3934dc8d980aac5eb1ecca094cfd3985f0f69/src/NativeVault.sol) supplies the inspected native deposit, share-accounting, and fee patterns.
 It is a source for the reusable design, not a conforming reference implementation of the complete native settlement profile.
 The correspondence and remaining implementation differences are recorded in the [verification record](../assets/orc-52/verification.md).

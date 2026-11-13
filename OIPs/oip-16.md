@@ -267,6 +267,8 @@ Testing must distinguish mock-backed policy execution from actual pool admission
 
 ## Reference Implementation
 
+References to `to-nexus/gasabs` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 The reference revisions are [go-cross `4c0838f`](https://github.com/to-nexus/go-cross/commit/4c0838f828f3a6300a1bd09fc70fec474a07a156) and [gasabs `f5e0af7`](https://github.com/to-nexus/gasabs/commit/f5e0af72bf0ce283015974011783df62f57dd8a0).
 
 - [Node service client and cached eligibility checks](https://github.com/to-nexus/go-cross/blob/4c0838f828f3a6300a1bd09fc70fec474a07a156/internal/ethapi/gasabs/client.go).

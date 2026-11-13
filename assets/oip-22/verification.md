@@ -4,6 +4,8 @@ This record describes source inspection performed against [go-cross revision 4c0
 It is supporting evidence for [OIP-22](../../OIPs/oip-22.md), not a definition of protocol requirements or proof of network activation.
 The source was inspected on 2026-10-29.
 
+References to `to-nexus/cross-contracts` are [internal verification sources](../../README.md#verification-sources) and require access to the cited repositories.
+
 ## Source Inspection
 
 | Source | Inspected behavior |

@@ -165,6 +165,8 @@ These cases require factory, module, signature, and real EntryPoint tests; this 
 
 ## Reference Implementation
 
+References to `to-nexus/cross-account-contracts` and `to-nexus/one-account-sdk` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 - [OneAccountBase](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/OneAccountBase.sol), [proxy implementation](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/OneAccount.sol), [factory](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/OneAccountFactory.sol), and [7702 variant](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/OneAccount7702.sol).
 - [ECDSA validator](https://github.com/to-nexus/cross-account-contracts/blob/1da203bda9dc3f6cd53b74ef0b7b330c80f8833a/src/modules/ECDSAValidator.sol).
 - [SDK account methods](https://github.com/to-nexus/one-account-sdk/blob/21b0565b21eb7d7ee2496049b981c4bbfbdb29c0/src/account/accountMethods.ts), [nonce encoding](https://github.com/to-nexus/one-account-sdk/blob/21b0565b21eb7d7ee2496049b981c4bbfbdb29c0/src/utils/userOp.ts), and [permit routing](https://github.com/to-nexus/one-account-sdk/blob/21b0565b21eb7d7ee2496049b981c4bbfbdb29c0/src/client/tokenPaymaster.ts).

@@ -110,6 +110,8 @@ These are interoperability cases; no wallet-to-chain test was run for this Draft
 
 ## Reference Implementation
 
+References to `to-nexus/one-account-sdk` and `to-nexus/one-account-wallet-sample` are [internal verification sources](../README.md#verification-sources) and require access to the cited repositories.
+
 - [Sample wallet provider](https://github.com/to-nexus/one-account-wallet-sample/blob/654de5e2a4125218555bfb810dcd383a22dec27d/packages/wallet/src/provider.ts) and [paymaster configuration](https://github.com/to-nexus/one-account-wallet-sample/blob/654de5e2a4125218555bfb810dcd383a22dec27d/packages/wallet/src/config.ts).
 - [SDK paymaster client](https://github.com/to-nexus/one-account-sdk/blob/21b0565b21eb7d7ee2496049b981c4bbfbdb29c0/src/client/paymasterClient.ts), [bundler preparation and submission](https://github.com/to-nexus/one-account-sdk/blob/21b0565b21eb7d7ee2496049b981c4bbfbdb29c0/src/client/bundlerClient.ts), and [token authorization handling](https://github.com/to-nexus/one-account-sdk/blob/21b0565b21eb7d7ee2496049b981c4bbfbdb29c0/src/client/tokenPaymaster.ts).
 

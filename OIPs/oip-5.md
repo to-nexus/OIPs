@@ -28,6 +28,10 @@ Without a shared definition, independent implementations derive different block 
 
 ### Conventions and Scope
 
+This proposal defines the base ECDSA profile of Istanbul headers and the original digest prefix.
+Hardforks may append extra-data fields or change their validation and hash commitments.
+The rules below apply unless superseded by a fork active for the header being verified, including the BLS extension in [OIP-23](oip-23.md) and digest version 2 in [OIP-35](oip-35.md).
+
 An *Istanbul chain* is defined in [OIP-4](oip-4.md).
 For a header `H`, let `n` be its number, `t` its timestamp, and `P` its parent header.
 `V` denotes the validator set in effect after `P`, ordered ascending by the bytes of each validator address, and `N = |V|`.
@@ -78,7 +82,7 @@ Genesis is exempt from the parent, timestamp, `coinbase`, random reveal, and sea
 
 ### Extra-Data Encoding
 
-The extra-data field is the RLP encoding of a list with six elements:
+The base extra-data format is the RLP encoding of a list with six leading elements:
 
 ```text
 extraData = RLP([vanity, validators, vote, round, committedSeals, randomReveal])
@@ -93,7 +97,13 @@ extraData = RLP([vanity, validators, vote, round, committedSeals, randomReveal])
 | `committedSeals` | List of byte strings    | At least one 65-byte committed seal, as specified in [Committed Seals](#committed-seals).                                       |
 | `randomReveal`   | Byte string             | The proposer's 65-byte secp256k1 random reveal signature, defined by [OIP-8](oip-8.md).                                         |
 
-A list with any other number of elements is invalid.
+Hardfork extensions may append fields after these six elements.
+Each extension specifies its activation condition, field types, validation rules, and effect on the block and commit seal hashes.
+Clients MUST apply the rules for the fork active at the header's block number and timestamp; having more than six elements is not by itself invalid.
+
+For compatibility with the reference implementation, the decoder also accepts the optional `signersBitset` and `signers` fields described in OIP-23, giving seven- or eight-element lists even before PoSA activation.
+Before PoSA activation, these fields must have decodable types but do not participate in consensus validation or the original-prefix filtered hashes.
+This compatibility does not permit arbitrary trailing fields: extra-data MUST decode under a supported schema and satisfy the active fork's validation rules.
 
 Validation does not check `validators`, except that genesis extra-data supplies the initial validator set when the chain configuration lists none.
 
@@ -110,6 +120,8 @@ RLP([vanity, validators, vote, r, [], randomReveal])
 ```
 
 All other header fields, including `coinbase`, `nonce`, and `mixDigest`, are unchanged.
+For the original prefix, any optional signer bitset and signer keys are removed when constructing this six-element filtered extra-data.
+Forks that change the digest or hash commitments, such as OIP-35, define their own filtering rules.
 The block hash and the commit seal hash for round `r` are:
 
 ```text
@@ -148,6 +160,8 @@ The vanity field and nonce are retained for compatibility with the inherited hea
 ## Backwards Compatibility
 
 This proposal records the existing block format of ONEchain networks and changes no block.
+The six base fields do not impose a permanent maximum list length or introduce a new rejection rule for historically decodable extensions.
+Later hardfork specifications govern their additional fields and validation rules from activation.
 The block hash differs from `keccak256(RLP(H))` of the complete header, so tools that compute Ethereum header hashes directly derive different values for Istanbul headers.
 Light clients, bridges, and indexers must apply the filtered-header rule to verify parent links and committed seals.
 
@@ -204,7 +218,9 @@ The seals are placeholders; the vector checks encoding and hashing, not signatur
 | `coinbase` not in `V` | Invalid. |
 | `t < P.timestamp + blockPeriod` | Invalid. |
 | `mixDigest` without the Istanbul prefix | Invalid. |
-| Extra-data that is not an RLP list of six elements | Invalid. |
+| Malformed RLP, invalid field types, or trailing fields outside a supported schema | Invalid. |
+| Six base fields followed by supported optional signer fields | Decode, then apply the active fork's validation rules; list length alone does not establish validity. |
+| Header at a hardfork boundary | Apply that header's active extra-data, seal, and hash rules. |
 | `voteType` other than `0x00` or `0xff` | Invalid. |
 | Seals with a repeated signer, a non-member signer, or fewer than `Q` signers | Invalid. |
 | Changing `round` or `committedSeals` of a valid header | Block hash unchanged. |
@@ -225,7 +241,8 @@ Implementation checks and their scope are recorded in the separate [verification
 
 ## Implementation and Activation
 
-This format applies from genesis on ONEchain Istanbul chains.
+The base format applies from genesis on ONEchain Istanbul chains.
+Hardforks may extend it from their activation points, as specified in OIP-23 and OIP-35.
 
 This specification records existing behavior and schedules no new fork.
 The reference source settings do not establish the activation history of deployed networks.
